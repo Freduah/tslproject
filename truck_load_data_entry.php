@@ -516,7 +516,7 @@ $( "#edit_serial_number" ).on('input', function(){
     
 });
 
-
+/*
 $("#tbl_truck_entry").delegate("tr ", "click", function() {
 
      var cellText = "";
@@ -530,7 +530,27 @@ $("#tbl_truck_entry").delegate("tr ", "click", function() {
             $( "#barcode_dialog" ).dialog( "open" );      
        console.log( cellText);
      });
- });
+ }); */
+    
+ 
+ $("#tbl_truck_entry td").click(function() {     
+ 
+            var col_num = parseInt( $(this).index() ) + 1;
+            var row_num = parseInt( $(this).parent().index() )+1;   
+            var barcode_text =  $(this).closest('tr').find('td:eq(8)').text(); 
+            if(col_num === 11){
+                
+              $( "#barcode_gen").barcode(
+                  barcode_text,
+                "code128"
+                );         
+
+              $( "#barcode_dialog" ).dialog( "open" );     
+              console.log( "Row_num =" + row_num + "  ,  Rolumn_num ="+ col_num );  
+                
+            }
+            
+        });
 
 
 </script>
