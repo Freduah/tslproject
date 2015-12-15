@@ -32,11 +32,12 @@
             <option value="DASHBOARD">DASHBOARD</option>
             <option value="MARSHALING">MARSHALING</option>
             <option value="SAFETYCHECK">SAFETY CHECK</option>
+            <option value="SAFETYCHECKMANUAL">SAFETY CHECK MANUAL</option>
             <option value="TERMINALENTRYCHECK">TERMINAL ENTRY</option>
             <option value="GANTRYCHECK">GANTRY CHECK</option>
             <option value="ULLAGINGCHECK">ULLAGING CHECK</option>
             <option value="INVOICECHECK">INVOICE CHECK</option>
-            <option value="TERMINALEXITCHECK">TERMINAL EXIT</option>
+            <option value="TERMINALEXITCHECK">TERMINAL EXIT</option>            
         </select>          
         <label for="user_pd_site">Plain Depot</label>
         <select id="user_pd_site" class="text ui-widget-content ui-corner-all" />

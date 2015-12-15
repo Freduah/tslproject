@@ -116,7 +116,7 @@
       
       $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
               . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE  FROM tsl_truck_load AS t, "
-              . "(SELECT @i:=0) AS foo WHERE t.CREATEDBY='$user_name' ORDER BY t.SNO DESC LIMIT 15";
+              . "(SELECT @i:=0) AS foo WHERE t.CREATEDBY='$user_name' ORDER BY t.ENTRYDATE DESC LIMIT 15";
               
       $result = $db_con->query($query);
       
@@ -194,13 +194,17 @@ $(function(){
         dialogClass: 'uititle',
         
         buttons: { 
-            "Print": function() {                
-               var restorebody = document.body.innerHTML;
-               var printcontent = document.getElementById('barcode_gen').innerHTML;
-               document.body.innerHTML =  printcontent;
-               window.print();
-               document.body.innerHTML =  restorebody; 
-               location.reload();
+            "Print": function() {                              
+            var divContents = $("#barcode_gen").html();
+            var printWindow = window.open('', '', 'height=200,width=330');
+            printWindow.document.write('<html><head><title>  </title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+            location.reload();
+        
             },
             "Close": function() { 
                $(this).dialog("close");
@@ -208,6 +212,8 @@ $(function(){
             }
         }
    });
+   
+   
     
    $( "#truck_entry_dialog" ).dialog({
        
@@ -309,13 +315,16 @@ $(function(){
             bdc:bdc, entry_date:entry_date, usno:unique_serial_no, genbarcode:genbar_code 
           }, 
           function( ){
+              
+              console.log(truck_no + ' ' + transporter + ' ' + driver + ' ' + capacity + ' ' + product
+                      + ' ' + bdc + ' ' + entry_date + ' ' + unique_serial_no + ' ' + genbar_code);
                
-                 $( "#barcode_gen").barcode(
+                /* $( "#barcode_gen").barcode(
                        '*'+unique_serial_no+truck_no+'*',
                        "code128"
                        );         
 
-                 $( "#barcode_dialog" ).dialog( "open" );              
+                 $( "#barcode_dialog" ).dialog( "open" );  */           
               
           });       
       }
@@ -535,22 +544,19 @@ $("#tbl_truck_entry").delegate("tr ", "click", function() {
  
  $("#tbl_truck_entry td").click(function() {     
  
-            var col_num = parseInt( $(this).index() ) + 1;
-            var row_num = parseInt( $(this).parent().index() )+1;   
-            var barcode_text =  $(this).closest('tr').find('td:eq(8)').text(); 
-            if(col_num === 11){
-                
-              $( "#barcode_gen").barcode(
-                  barcode_text,
-                "code128"
-                );         
+        var col_num = parseInt( $(this).index() ) + 1;
+        var row_num = parseInt( $(this).parent().index() )+1;   
+        var barcode_text =  $(this).closest('tr').find('td:eq(8)').text(); 
+        if(col_num === 11 && row_num !== null){
 
-              $( "#barcode_dialog" ).dialog( "open" );     
-              console.log( "Row_num =" + row_num + "  ,  Rolumn_num ="+ col_num );  
-                
-            }
-            
-        });
+          $( "#barcode_gen").barcode(
+              barcode_text,
+            "code128"
+            );         
+
+          $( "#barcode_dialog" ).dialog( "open" );     
+        }
+ });
 
 
 </script>
@@ -580,9 +586,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
             
             if ($db_con->query($query) === TRUE) 
                 {
-                  echo 'New record successfully saved.';                               
+                  echo $data = 'New record successfully saved.';                               
                 } else {
-                  echo 'error';
+                  echo $data = 'error';
                 }
                $db_con->close();
             

@@ -28,6 +28,10 @@
               {
                 header("location: safety_check.php"); // Redirecting To Truck Safety Check  
               }
+               else if ( $user_level === 'SAFETYCHECKMANUAL' )
+              {
+                header("location: safety_manual_check.php"); // Redirecting To Truck Safety Check  
+              }
               else if ( $user_level === 'TERMINALENTRYCHECK' )
               {
                 header("location: terminal_entry_check.php"); // Redirecting To Terminal Entry Check  
@@ -47,7 +51,11 @@
               else if ( $user_level === 'TERMINALEXITCHECK' )
               {
                 header("location: terminal_exit_check.php"); // Redirecting To Terminal Exit Check   
-              }             
+              }
+              else if ( $user_level === 'ADMIN' )
+              {
+                header("location: login_menu.php"); // Redirecting To Terminal Exit Check   
+              } 
           }          
           } else {
               header("location: login.php");

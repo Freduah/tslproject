@@ -7,30 +7,27 @@
     <div id="content">		
         <div id="banner-secondary" class="row">
             <div class="downloads-box four columns push-eight">
-                <form id="user_login_form" class="form-horizontal" action="user_log_in_sucess.php" method="POST">
-                    <label id="lbl_login_alter"></label>
-                    <div class="form-group">
-                      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                      <div class="col-sm-10">
-                          <input type="email" class="form-control" id="user-login-email" name="user-login-email" placeholder="Email">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-                      <div class="col-sm-10">
-                          <input type="password" class="form-control" id="user-login-pass" name="user-login-pass" placeholder="Password">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" id="loginbtn" onclick="return false;" class=" button btn btn-default">Log in</button>
-                      </div>
-                    </div>
-                  </form>
+              Some message here
             </div>
             <div class="features-box row eight columns pull-four">
-               
+                <table>
+                    <tr>
+                        <td><input type="button" id="data_entry_button" class="styled-login-menu-button" value="DATA ENTRY" /></td>
+                        <td><input type="button" id="marshaling_area_check_button" class="styled-login-menu-button" value="MARSHALING AREA" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="safety_check_button" class="styled-login-menu-button" value="SAFETY CHECK" /></td>
+                        <td><input type="button" id="terminal_entry_check_button" class="styled-login-menu-button" value="TERMINAL ENTRY CHECK" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="gantry_area_check_button" class="styled-login-menu-button" value="GANTRY CHECK" /></td>
+                        <td><input type="button" id="ullaging_area_check_button" class="styled-login-menu-button" value="ULLAGING CHECK" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" id="invoice_check_button" class="styled-login-menu-button" value="INVOICE CHECK" /></td>
+                        <td><input type="button" id="terminal_exit_check_button" class="styled-login-menu-button" value="TERMINAL EXIT CHECK" /></td>
+                    </tr>
+                </table>
                 
             </div>
         </div>
@@ -75,6 +72,7 @@ $(function () {
        }      
         
     });
+
 });
 
 </script>

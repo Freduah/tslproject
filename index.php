@@ -9,18 +9,38 @@
     <div id="content">		
         <div id="banner-secondary" class="row">
                 <div class="downloads-box four columns push-eight">
-                    <button id="btn_useradd" class="button-link">Sign Up</button>
+                    <p>Some message goes here</p>
                 </div>
                 <div class="features-box row eight columns pull-four">
-                    
-                    <p>Put something here</p>
+                 
+                    <form id="user_login_form" class="form-horizontal" action="user_log_in_sucess.php" method="POST">
+                    <label id="lbl_login_alter"></label>
+                    <div class="form-group">
+                      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                          <input type="email" class="form-control" id="user-login-email" name="user-login-email" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+                      <div class="col-sm-10">
+                          <input type="password" class="form-control" id="user-login-pass" name="user-login-pass" placeholder="Password">
+                      </div>
+                    </div>
 
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                         
+                      </div>
+                    </div>
+                  </form>
+                   <button type="submit" id="loginbtn" onclick="return false;" class="button btn btn-default">Log in</button>
+                   <button id="btn_useradd" class="button btn btn-default">Sign Up</button>
                 </div>
         </div>
 
         <div id="home-content" class="clearfix row">
             
-            <p>Put something here</p>
             
             <?php 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,7 +49,7 @@
                         $fname = mysqli_real_escape_string($db_con,$_POST['fname']);
                         $lname = mysqli_real_escape_string($db_con,$_POST['lname']);
                         $uname = mysqli_real_escape_string($db_con,$_POST['uname']);
-                        $upass = mysqli_real_escape_string(md5($db_con,$_POST['upass']));
+                        $upass = md5(mysqli_real_escape_string($db_con,$_POST['upass']));
                         $ucomment = mysqli_real_escape_string($db_con,$_POST['ucomments']);
                         
                         
@@ -88,7 +108,6 @@
     
    </fieldset>        
 </form>
-    <button id="reg_user" class="button-link">Create</button><button id="cancel_reg" class="button-link">Cancel</button>
 </div>
  
 
@@ -102,7 +121,7 @@
     $(function() {
       $( "#user_reg_dialog" ).dialog({
         autoOpen: false,
-        height: 610,
+        height: 570,
         width: 350,
         modal: true,
         dialogClass: 'uititle',
@@ -114,7 +133,89 @@
         hide: {
           effect: "explode",
           duration: 1000
-        }
+        },
+        buttons: { 
+            "Create": function(){
+                
+                var valid = true;
+         
+                var first_name = $( "#user_first_name" ).val();
+                var last_name = $( "#user_last_name" ).val();
+                var u_name = $( "#user_name" ).val();
+                var u_password = $( "#user_password" ).val();
+                var u_confirm = $( "#user_confirm" ).val();
+                var u_comments = $( "#user_comments").val();
+                console.log('First Name :' + first_name + ' Last Name ' + last_name + ' User Name :' + u_name +
+                        ' Password :' + u_password + ' Confirm :' + u_confirm);
+
+                if(first_name === ''){
+                    $('#lbl_alert').html("First name can not be empty.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;
+                } else if(last_name === ''){
+                    $('#lbl_alert').html("Last name can not be empty.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;
+                } else if(u_name === ''){
+                    $('#lbl_alert').html("User name Name can not be empty.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;
+                } else if(u_password === ''){
+                    $('#lbl_alert').html("Password can not be empty.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false; 
+                } else if(u_confirm === ''){
+                    $('#lbl_alert').html("Confirm password can not be empty.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;    
+                } else if(u_comments === ''){
+                    $('#lbl_alert').html("User comments can not be empty.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;              
+                } else if(u_password !== u_confirm){
+                    $('#lbl_alert').html("Password do not match.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;
+                } else if( !isValidEmailAddress( u_name ) ) {
+                    $('#lbl_alert').html("Invalid e-mail address.");
+                    $('#lbl_alert').css('color','red');
+                    valid = false;
+                }
+
+                if( valid ){
+                   $.post("index.php",
+                       {
+                           fname:first_name, lname:last_name, uname:u_name, upass:u_password, uconfirm:u_confirm, ucomments:u_comments
+                       },
+                      function( data ){
+
+                          if(data.username === "inuse"){
+                              console.log(data.username);
+                              alert('User already exists!');
+
+                          } else {
+                             console.log(data.username); 
+                           $( "#user_first_name" ).val('');
+                           $( "#user_last_name" ).val('');
+                           $( "#user_name" ).val('');
+                           $( "#user_password" ).val('');
+                           $( "#user_confirm" ).val(''); 
+                           $( "#user_comments" ).val(''); 
+                           $('#lbl_alert').html("");
+                           $( "#user_reg_dialog" ).dialog( "close" ); 
+
+                          }
+                   });            
+                }
+                
+                
+            },
+            "Cancel": function(){
+              $( "#user_reg_dialog" ).dialog( "close" );
+              location.reload();
+            }                
+        }     
+        
       });
       
       //Validate email
@@ -233,16 +334,42 @@
                        
                    }
             });            
-         }        
+         } 
+         
+         
+         
         }); // End of jquery posting
 
       $( "#btn_useradd" ).click(function() {
         $( "#user_reg_dialog" ).dialog( "open" );
       });
       
-      $( "#cancel_reg" ).click(function() {
-          $( "#user_reg_dialog" ).dialog( "close" );
-      });
+      
+      
+  
+    $( "#loginbtn" ).click(function(){
+       var valid = true; 
+       var username = $( "#user-login-email" ).val();
+       var userpass = $( "#user-login-pass" ).val();
+       
+       if(username === ''){
+          $( "#lbl_login_alter" ).html("User name can not be empty");
+          $( "#lbl_login_alter" ).css('color','red');
+          valid = false;
+       } else if(userpass === ''){
+           $( "#lbl_login_alter" ).html("Password can not be empty");
+           $( "#lbl_login_alter" ).css('color','red');
+          valid = false; 
+       }
+       
+       if( valid ) {           
+           
+           $("form#user_login_form").submit();
+       }      
+        
+    });
+      
+      
       
     });
   

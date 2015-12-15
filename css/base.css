@@ -505,7 +505,7 @@ input::-moz-focus-inner {
 textarea {
 	overflow: auto; /* 1 */
 	vertical-align: top; /* 2 */
-	min-height: 150px;
+	min-height: 80px;
 	resize: vertical;
 }
 
@@ -3299,11 +3299,12 @@ footer .books li a cite {
 	}
 
 	a[href]:after {
-		content: " (" attr(href) ")";
+		//content: " (" attr(href) ")";
+                content: "";
 	}
 
 	abbr[title]:after {
-		content: " (" attr(title) ")";
+		content: "";
 	}
 
 	/*
@@ -3336,7 +3337,8 @@ footer .books li a cite {
 	}
 
 	@page {
-		margin: 0.5cm;
+		//margin: 0.5cm;
+                margin: 50cm;
 	}
 
 	p,

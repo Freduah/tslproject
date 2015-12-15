@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>OPTIMAL alpha</title>
+	<title>Truck Module 1</title>
 
 	<meta name="author" content="jQuery Foundation - jquery.org">
 	<meta name="description" content="jQuery: The Write Less, Do More, JavaScript Library">
@@ -66,7 +66,7 @@ img.emoji {
                 <li class="project qunitjs"><a href="#" title="BPD">Feedback</a></li>
             </ul>
             <ul class="links">
-                <li><a href="login.php">Log In</a></li>
+                <li><?php echo !empty($_SESSION['login_user_name']);  ?></li>
             </ul>
         </div>
     </nav>
