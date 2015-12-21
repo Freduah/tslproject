@@ -23,7 +23,7 @@
                     <td><label for="add_truck_driver">DRIVER NAME</label></td>
                     <td><input type="text" id="add_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
 
-                    <td><label for="add_truck_capacity">CAPACITY</label></td>
+                    <td><label for="add_truck_capacity">CAPACITY (ltr)</label></td>
                     <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
 
                     <td><label for="add_truck_product">PRODUCT</label></td>
@@ -68,7 +68,6 @@
                     <td><input type="text" id="add_truck_entry_date" value="" class="text ui-widget-content ui-corner-all"></td>
                 </fieldset>                          
             </form> 
-            <button id="btn_save_entry" class="button-link">Save</button><button id="btn_cancel_enrty" class="button-link">Cancel</button>
         </div> <!-- End of Truck Entry Dialog div -->
        
         
@@ -230,8 +229,79 @@ $(function(){
        hide: {
           effect: "explode",
           duration: 1000
-       }       
+       } ,
+        
+        buttons: { 
+            "Save": function() {                              
+            var valid = true;
+            var truck_no = $( "#add_truck_number" ).val();
+            var transporter = $( "#add_truck_transporter" ).val();
+            var driver = $( "#add_truck_driver" ).val();
+            var capacity = $( "#add_truck_capacity" ).val();
+            var product = $( "#add_truck_product" ).val();
+            var bdc = $( "#add_truck_bdc" ).val();
+            var entry_date = $( "#add_truck_entry_date" ).val();
+            var unique_serial_no = generateUUID();
+            var genbar_code = '*' + unique_serial_no + $( "#add_truck_number" ).val() + '*';
+
+            if (truck_no === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("TRUCK NO can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (transporter === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("TRANSPORTER can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (driver === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("DRIVER can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (capacity === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("CAPACITY can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (product === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("PRODUCT can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (bdc === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("BDC can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (entry_date === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("ENTRY DATE can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            } else if (genbar_code === ''){
+                $( "#lbl_truck_entry_and_load_alert" ).html("BARCODE can not be empty.");
+                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
+                valid = false;
+            }       
+
+            if( valid ){
+
+                $.post("truck_load_data_entry.php", 
+                {
+                  truckno:truck_no, transporter:transporter, driver:driver, capacity:capacity, product:product, 
+                  bdc:bdc, entry_date:entry_date, usno:unique_serial_no, genbarcode:genbar_code 
+                }, 
+                function( ){
+
+                    console.log(truck_no + ' ' + transporter + ' ' + driver + ' ' + capacity + ' ' + product
+                            + ' ' + bdc + ' ' + entry_date + ' ' + unique_serial_no + ' ' + genbar_code);
+                    location.reload();
+                });       
+            }
+            
+        
+            },
+            "Cancel": function() { 
+               $(this).dialog("close");
+               location.reload();
+            }
+        }      
    });
+    
     
    $( "#add_truck_entry_date" ).datepicker({
         dateFormat: "yy-mm-dd"
@@ -328,6 +398,9 @@ $(function(){
               
           });       
       }
+      
+      
+      
    });   
      
    $( "#btn_add_truck_for_load" ).click(function(){
