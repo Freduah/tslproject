@@ -22,7 +22,7 @@
 
              $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
                      . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE  FROM tsl_truck_load AS t, "
-                     . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$curr_date')-1 ORDER BY t.SNO DESC LIMIT 15";
+                     . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$curr_date') ORDER BY t.SNO DESC LIMIT 15";
 
              $result = $db_con->query($query);
 
@@ -128,8 +128,11 @@ $(document).ready(function(){
       success: function(){ 
             
       }        
-    });   
+    });  
     
+    $("#truck_number").prop('disabled', true);
+    $("#serial_number").prop('disabled', true);
+    $("#rejection_reason").prop('disabled', true);
 });
 
 
@@ -175,6 +178,19 @@ $( "#truck_safety_check_manual_dialog" ).dialog({
               var rejection = $( "#rejection_reason" ).val();
               var comments = $( "#query_comment" ).val();
               
+              if(rejection !== ' ' && comments === ' '){                  
+                 alert('Comments can not be empty.');  
+                 valid = false; 
+              } else if(has_passed_safety === 'Y' && rejection === ' '){
+                 valid = true;
+              } else if(has_passed_safety === 'N' && rejection === ' '){
+                 valid = false;
+                 alert('Rejection reason can not be empty.');
+              } else if(has_passed_safety === ' '){
+                  alert('Safety check can not be empty');
+                 valid = false;
+              } 
+              
                            
               if (valid)
               {
@@ -185,18 +201,44 @@ $( "#truck_safety_check_manual_dialog" ).dialog({
                     function( data ){
                         console.log(has_passed_safety);
                        if(data === '1'){
-                           alert('Data successfully saved.');
+                           
+                           if(has_passed_safety === 'Y'){
+                                         
+                            $( "#truck_number" ).val(' ');
+                            $( "#serial_number" ).val(' ');
+                            $( "#safety_check" ).val(' ');
+                            $( "#rejection_reason" ).val(' ');
+                            $( "#query_comment" ).val(' ');  
+                            
+                            alert('Truck allowed for loading.');
+                               
+                           } else if(has_passed_safety === 'N'){
+                               
+                            $( "#truck_number" ).val(' ');
+                            $( "#serial_number" ).val(' ');
+                            $( "#safety_check" ).val(' ');
+                            $( "#rejection_reason" ).val(' ');
+                            $( "#query_comment" ).val(' ');  
+                            
+                            alert('Truck rejected for loading.');  
+                            
+                           }
+                           
+                           
+                       
+                        $( "#truck_safety_check_manual_dialog" ).dialog("close");    
                        } 
                        else if(data === '-1'){
 
                        }
+                       
                     });
               }
         
             },
             "No": function() { 
                $(this).dialog("close");
-               location.reload();
+               //location.reload();
             }
         }
 });
@@ -206,7 +248,13 @@ $('#safety_check').change(function() {
     if ($(this).val() === 'Y') {
         $("#rejection_reason").prop('disabled', true);
         $("#query_comment").prop('disabled', true);
+        $("#rejection_reason").val(' ');
+        $("#query_comment").val(' ');
     }
+    else if ($(this).val() === ' ') {
+        $("#rejection_reason").prop('disabled', true);
+        $("#query_comment").prop('disabled', true);
+    } 
     else if ($(this).val() === 'N'){
         $("#rejection_reason").prop('disabled', false);
         $("#query_comment").prop('disabled', false);
