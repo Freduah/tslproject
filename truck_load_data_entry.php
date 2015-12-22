@@ -4,8 +4,6 @@
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/db/con_db.php'; ?>
 
 
-
-
 <div id="content-wrapper" class="clearfix row">
   <div class="content-full full-width twelve columns">
     <div id="content">	
@@ -89,14 +87,43 @@
                 <label for="edit_truck_capacity">CAPACITY</label> 
                 <input type="text" id="edit_truck_capacity" value="" class="text ui-widget-content ui-corner-all"> 
 
-                <label for="edit_truck_product">PRODUCT</label> 
-                <input type="text" id="edit_truck_product" value="" class="text ui-widget-content ui-corner-all">  
+                <td><label for="edit_truck_product">PRODUCT</label></td>
+                    <td><select id="edit_truck_product" class="text ui-widget-content ui-corner-all">
+                            <option value=>---</option>
+                            <?php  
+                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
+                                                                   
+                                    $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
+                                    $result = $db_con->query($query);
+                                     while($row = $result->fetch_assoc()) {
 
-                <label for="edit_truck_bdc">BDC</label> 
-                <input type="text" id="edit_truck_bdc" value="" class="text ui-widget-content ui-corner-all"> 
+                                      echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
 
-                <label for="edit_truck_entry_date">ENTRY DATE</label> 
-                <input type="text" id="edit_truck_entry_date" value="" class="text ui-widget-content ui-corner-all"> 
+                                     }    
+                                 
+                                } 
+                            
+                            ?>   
+                        </select> </td>
+
+                    <td><label for="edit_truck_bdc">BDC</label></td>
+                    <td><td><select id="edit_truck_bdc" class="text ui-widget-content ui-corner-all">
+                            <option value=>---</option>
+                            <?php  
+                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
+                                                                   
+                                    $query = "SELECT * FROM `tsl_bdc`";
+                                    $result = $db_con->query($query);
+                                     while($row = $result->fetch_assoc()) {
+
+                                      echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
+
+                                     }    
+                                 
+                                } 
+                            
+                            ?>                            
+                        </select></td>
             </fieldset>                          
         </form> 
         </div> <!-- End Of Edit Truck Entry Div -->
@@ -115,7 +142,7 @@
       
       $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
               . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE  FROM tsl_truck_load AS t, "
-              . "(SELECT @i:=0) AS foo WHERE t.CREATEDBY='$user_name' ORDER BY t.ENTRYDATE DESC LIMIT 15";
+              . "(SELECT @i:=0) AS foo WHERE t.CREATEDBY='$user_name' AND t.HASPASSEDSAFETY !='Y' ORDER BY t.ENTRYDATE DESC LIMIT 15";
               
       $result = $db_con->query($query);
       
@@ -132,7 +159,8 @@
           <th data-priority='8'>BDC</th>
           <th data-priority='8'>BARCODE NO</th>
           <th data-priority='9'>ENTRY DATE</th>
-          <th data-priority='9'>Print</th>
+          <th data-priority='9'></th>
+          <th data-priority='9'></th>
         </tr>
       </thead>
       <tbody>";
@@ -148,7 +176,8 @@
          echo " <td>" . $row['BDC'] . "</td>";
          echo " <td>" . $row['GENBARCODE'] . "</td>";
          echo " <td>" . $row['ENTRYDATE'] . "</td>";
-         echo " <td> <input type=button id=btn_print></button></td>";
+         echo " <td> <input type=button id='btn_print' value='Print'></button></td>";
+         echo " <td> <input type=button id='btn_edit' value='Edit'></button></td>";
          echo " </tr> "; 
         }
 
@@ -163,7 +192,11 @@
     
 
 <div id="barcode_dialog" title="Print Barcode">
-    <div id="barcode_gen"></div>          
+    <table>
+        <tr>
+            <td> <div id="barcode_gen"></div> </td>
+        </tr>
+    </table>            
 </div> <!-- End of Barcode dialog -->
         
            
@@ -598,27 +631,17 @@ $( "#edit_serial_number" ).on('input', function(){
     
 });
 
-/*
-$("#tbl_truck_entry").delegate("tr ", "click", function() {
-
-     var cellText = "";
-     $(this).children().each(function() {
-       cellText =  $(this).closest('tr').find('td:eq(8)').text();  
-            $( "#barcode_gen").barcode(
-                  cellText,
-                "code128"
-                );         
-
-            $( "#barcode_dialog" ).dialog( "open" );      
-       console.log( cellText);
-     });
- }); */
-    
- 
  $("#tbl_truck_entry td").click(function() {     
  
         var col_num = parseInt( $(this).index() ) + 1;
         var row_num = parseInt( $(this).parent().index() )+1;   
+        var serial_no = $(this).closest('tr').find('td:eq(1)').text();
+        var truck_no =  $(this).closest('tr').find('td:eq(2)').text();
+        var transporter =  $(this).closest('tr').find('td:eq(3)').text();
+        var driver_name =  $(this).closest('tr').find('td:eq(4)').text();
+        var capacity =  $(this).closest('tr').find('td:eq(5)').text();
+        var product =  $(this).closest('tr').find('td:eq(6)').text();
+        var bdc =  $(this).closest('tr').find('td:eq(7)').text();
         var barcode_text =  $(this).closest('tr').find('td:eq(8)').text(); 
         if(col_num === 11 && row_num !== null){
 
@@ -628,6 +651,16 @@ $("#tbl_truck_entry").delegate("tr ", "click", function() {
             );         
 
           $( "#barcode_dialog" ).dialog( "open" );     
+        } else if(col_num === 12 && row_num !== null){
+            
+            $( "#edit_truck_entry_dialog" ).dialog( "open" ); 
+            $( "#edit_serial_number" ).val(serial_no);
+            $( "#edit_truck_number").val(truck_no);
+            $( "#edit_truck_transporter").val(transporter);
+            $( "#edit_truck_driver").val(driver_name);
+            $( "#edit_truck_capacity").val(capacity);
+            $( "#edit_truck_product").val(product);
+            $( "#edit_truck_bdc").val(bdc);
         }
  });
 
