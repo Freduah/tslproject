@@ -16,11 +16,14 @@
           $_SESSION['login_user_name'] = $login_user_name; // Initializing Session
           
           while($row = $result->fetch_assoc()) {
-            
-              $user_level =  $row['UserLevel'];   
+              $user_name = $row['FirstName'] . ' ' . $row['LastName'];
+              $user_level =  $row['UserLevel']; 
+              $_SESSION['username'] = $user_name;
+              $_SESSION['userlevel'] = $user_level;
               
               if ( $user_level === 'DATAENTRY' ){
-                header("location: truck_load_data_entry.php"); // Redirecting To Truck Data Entry                    
+                   header("location: login_menu.php"); // Redirecting Login Menu
+                //header("location: truck_load_data_entry.php"); // Redirecting To Truck Data Entry                    
               } 
               else if ( $user_level === 'MARSHALING' ){
                 header("location: marshaling_area_check.php"); // Redirecting To Marshaling Area                   
@@ -54,11 +57,11 @@
               }
               else if ( $user_level === 'ADMIN' )
               {
-                header("location: login_menu.php"); // Redirecting To Terminal Exit Check   
+                header("location: login_menu.php"); // Redirecting Login Menu   
               } 
           }          
           } else {
-              header("location: login.php");
+              header("location: index.php");
          }
         $db_con->close(); // Closing Connection           
      }
