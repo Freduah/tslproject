@@ -59,14 +59,21 @@ img.emoji {
   <section id="global-nav">
     <nav>
         <div class="constrain">
-            <ul class="projects">
-                <li class="project jquery"><a href="#" title="PD">Home</a></li>
-                <li class="project jquery-ui"><a href="#" title="APD">About</a></li>
-                <li class="project jquery-mobile"><a href="#" title="KPD">Contact</a></li>
-                <li class="project qunitjs"><a href="#" title="BPD">Feedback</a></li>
-            </ul>
-            <ul class="links">
-                <li><?php echo !empty($_SESSION['login_user_name']);  ?></li>
+            <ul class="links" style=" color: white; ">           
+                <li>
+                    <a>
+                       <?php                          
+                           if( !empty($_SESSION['login_user_name'])){
+                               echo  $_SESSION['username'];
+                           }                         
+                         ?>
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="index.php">Log out</a></li>
+                    </ul>
+                </li>
+                
             </ul>
         </div>
     </nav>
