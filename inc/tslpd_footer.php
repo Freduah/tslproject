@@ -16,7 +16,7 @@
 		
  <div id="legal">
     <ul class="footer-site-links">
-        <li><a href="#">Some Link Here</a></li>
+        <li><a href="#">Link</a></li>
     </ul>
     <p class="copyright">
             Copyright 2015 
