@@ -21,7 +21,7 @@
              $curr_date = date('Y-m-d H:i:s');
 
              $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
-                     . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE  FROM tsl_truck_load AS t, "
+                     . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE, t.HASPASSEDSAFETY  FROM tsl_truck_load AS t, "
                      . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$curr_date') ORDER BY t.SNO DESC LIMIT 15";
 
              $result = $db_con->query($query);
@@ -39,7 +39,8 @@
                  <th data-priority='8'>BDC</th>
                  <th data-priority='8'>BARCODE NO</th>
                  <th data-priority='9'>ENTRY DATE</th>
-                 <th data-priority='9'>Check</th>
+                 <th data-priority='9'>SAFETY?</th>
+                 <th data-priority='9'></th>
                </tr>
              </thead>
              <tbody>";
@@ -55,7 +56,8 @@
                 echo " <td>" . $row['BDC'] . "</td>";
                 echo " <td>" . $row['GENBARCODE'] . "</td>";
                 echo " <td>" . $row['ENTRYDATE'] . "</td>";
-                echo " <td> <input type=button id=btn_print></button></td>";
+                echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
+                echo " <td> <input type=button id=btn_print value=Check /></td>";
                 echo " </tr> "; 
                }
 
@@ -143,7 +145,7 @@ $("#tbl_truck_safety_manual_check td").click(function() {
         var barcode_text =  $(this).closest('tr').find('td:eq(8)').text(); 
         var serial_number = $(this).closest('tr').find('td:eq(1)').text(); 
         var truck_number = $(this).closest('tr').find('td:eq(2)').text(); 
-        if(col_num === 11 && row_num !== null){
+        if(col_num === 12 && row_num !== null){
         
             $.get("safety_check_manual_get.php", 
             {
