@@ -9,7 +9,7 @@
     <div id="content">		
         <div id="banner-secondary" class="row">
                 <div class="downloads-box four columns push-eight">
-                    <p>Some message goes here</p>
+                    <p>Text</p>
                 </div>
                 <div class="features-box row eight columns pull-four">
                  
