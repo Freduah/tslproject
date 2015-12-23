@@ -38,7 +38,7 @@
 </div>
     <table>
         <tr>
-            <td>Some Search Here</td>
+            <td>  </td>
         </tr>
     </table>
 </nav>
