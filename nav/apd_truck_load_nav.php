@@ -5,7 +5,7 @@
     <ul id="menu-top" class="menu">
         <table>
             <tr>
-                <td><input type="button" id="btn_add_truck_for_load" class="styled-data-entry-button" value="ADD TRUCK" /></td>
+                <td><input type="button" id="btn_add_truck_for_load" class="styled-data-entry-button" value="NEW" /></td>
                 <td>    </td>
                 <td>
                     <?php
