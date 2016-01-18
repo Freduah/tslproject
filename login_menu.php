@@ -9,9 +9,11 @@
             <div class="downloads-box four columns push-eight">
                 <table>
                     <tr>
-                        <td><input type="button" id="tom_watch_button" class="styled-login-menu-button" value="TOM MANAGER WATCH" /></td>
-                        
-                    </tr>                    
+                        <td><input type="button" id="tom_watch_button" class="styled-login-menu-button" value="TOM WATCH TRUCKS STATUS" /></td>
+                    </tr> 
+                    <tr>
+                        <td><input type="button" id="tom_watch_dataentry_button" class="styled-login-menu-button" value="TOM WATCH DATA ENTRY" /></td>
+                    </tr>
                 </table>
             </div>
             <div class="features-box row eight columns pull-four">
@@ -73,8 +75,20 @@ $(function () {
             $("#ullaging_area_check_button").prop('disabled', false);
             $("#invoice_check_button").prop('disabled', false);
             $("#terminal_exit_check_button").prop('disabled', false); 
-            $("#tom_watch_button").prop('disabled', false);
-         } else if(result.userlevel === 'DATAENTRY'){
+            $("#tom_watch_button").prop('disabled', false);   //tom_watch_dataentry_button
+            $("#tom_watch_dataentry_button").prop('disabled', false); 
+         } else if(result.userlevel === 'MANAGER'){
+            $("#data_entry_button").prop('disabled', false);
+            $("#tom_watch_dataentry_button").prop('disabled', false); 
+            $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
+            $("#safety_check_button").prop('disabled', true).css('color','gray');
+            $("#terminal_entry_check_button").prop('disabled', true).css('color','gray'); 
+            $("#gantry_area_check_button").prop('disabled', true).css('color','gray');
+            $("#ullaging_area_check_button").prop('disabled', true).css('color','gray');
+            $("#invoice_check_button").prop('disabled', true).css('color','gray');
+            $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_watch_button").prop('disabled', true).css('color','gray');
+        } else if(result.userlevel === 'DATAENTRY'){
             $("#data_entry_button").prop('disabled', false);
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
             $("#safety_check_button").prop('disabled', true).css('color','gray');
@@ -84,6 +98,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'MARSHALING'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', false);
@@ -94,6 +109,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'SAFETYCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -104,9 +120,10 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'SAFETYCHECKMANUAL'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
-            $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
+            $("#marshaling_area_check_button").prop('disabled', false);
             $("#safety_check_button").prop('disabled', false);
             $("#safety_check_button").prop('disabled', false);
             $("#terminal_entry_check_button").prop('disabled', true).css('color','gray'); 
@@ -115,6 +132,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'TERMINALENTRYCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -126,6 +144,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'GANTRYCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -137,6 +156,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'ULLAGINGCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -148,6 +168,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'INVOICECHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -158,6 +179,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', false);
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          } else if(result.userlevel === 'TERMINALEXITCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -169,6 +191,7 @@ $(function () {
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', false);  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
          }        
          
          
@@ -205,6 +228,10 @@ $("#terminal_exit_check_button").click(function(){
 });
 $("#tom_watch_button").click(function(){
   window.location.href='tom_watch.php';   
+});
+
+$("#tom_watch_dataentry_button").click(function(){
+  window.location.href='tom_watch_data_entry.php';      
 });
 
 });
