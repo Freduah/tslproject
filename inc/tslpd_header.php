@@ -69,7 +69,7 @@ img.emoji {
                          ?>
                     </a>
                     <ul class="dropdown">
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="user_profile.php">Profile</a></li>
                         <li><a href="index.php">Log out</a></li>
                     </ul>
                 </li>
