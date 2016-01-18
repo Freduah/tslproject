@@ -113,7 +113,7 @@
                                                         
                                                         $super_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND PRODUCT='SUPER' ";
                                                         $ago_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND PRODUCT='AGO' ";
-                                                        $kero_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND PRODUCT!='KERO' ";
+                                                        $kero_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND PRODUCT='KERO' ";
                                                          
                                                                                                                
                                                         $tot_super = mysqli_num_rows($db_con->query($super_result));
@@ -137,7 +137,7 @@
                                             
                                                 $super_passed = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='Y' AND PRODUCT='SUPER' ";
                                                 $ago_passed = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='Y' AND PRODUCT='AGO' ";
-                                                $kero_passed = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='Y' AND PRODUCT!='KERO' ";
+                                                $kero_passed = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='Y' AND PRODUCT='KERO' ";
 
                                                 $tot_super_passed = mysqli_num_rows($db_con->query($super_passed));
                                                 $tot_ago_passed = mysqli_num_rows($db_con->query($ago_passed));
@@ -145,7 +145,7 @@
                                                 
                                                 $super_rejected = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='N' AND PRODUCT='SUPER' ";
                                                 $ago_rejected = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='N' AND PRODUCT='AGO' ";
-                                                $kero_rejected = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='N' AND PRODUCT!='KERO' ";
+                                                $kero_rejected = "SELECT * FROM `tsl_truck_load` WHERE DATE(PASSEDSAFETYDATE) ='$currDate' AND HASPASSEDSAFETY='N' AND PRODUCT='KERO' ";
 
                                                 $tot_super_rejected = mysqli_num_rows($db_con->query($super_rejected));
                                                 $tot_ago_rejected = mysqli_num_rows($db_con->query($ago_rejected));
@@ -224,7 +224,7 @@
                                                         
                                                         $super_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(INVOICE_CHECK_DATE) ='$currDate' AND PRODUCT='SUPER' ";
                                                         $ago_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(INVOICE_CHECK_DATE) ='$currDate' AND PRODUCT='AGO' ";
-                                                        $kero_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(INVOICE_CHECK_DATE) ='$currDate' AND PRODUCT!='KERO' ";
+                                                        $kero_result = "SELECT * FROM `tsl_truck_load` WHERE DATE(INVOICE_CHECK_DATE) ='$currDate' AND PRODUCT='KERO' ";
                                                          
                                                                                                                
                                                         $tot_super = mysqli_num_rows($db_con->query($super_result));
