@@ -15,7 +15,7 @@
 
         if($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            if(!empty($_SESSION['login_user_name']))
+            if(!empty($_SESSION['login_user_name']) && empty($_GET['serialnumber']))
             {
              $user_name = $_SESSION['login_user_name'];
              $curr_date = date('Y-m-d H:i:s');
@@ -64,14 +64,59 @@
               echo "</tbody>
                </table>";
 
-             $db_con->close();   
-            } 
-        } else {
-            
-            
-            
-        }
+             
+            } else if(!empty($_SESSION['login_user_name']) && !empty($_GET['serialnumber'])){
+              
+                $serail_no = mysqli_real_escape_string($db_con, $_GET['serialnumber']);
+                
+                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
+                     . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE, t.HASPASSEDSAFETY  FROM tsl_truck_load AS t, "
+                     . "(SELECT @i:=0) AS foo WHERE t.SNO = '$serail_no' ";
 
+                $result = $db_con->query($query);
+
+                echo "<table id='tbl_truck_safety_manual_check' style='margin-left:auto; margin-right:auto;'>
+                <thead>
+                  <tr>
+                    <th data-priority='1'>NO</th>
+                    <th data-priority='1'>SNO</th>
+                    <th data-priority='2'>TRUCK NO</th>
+                    <th data-priority='3'>TRANSPORTER</th>
+                    <th data-priority='4'>DRIVER NAME</th>
+                    <th data-priority='6'>CAPACITY</th>
+                    <th data-priority='7'>PRODUCT</th>
+                    <th data-priority='8'>BDC</th>
+                    <th data-priority='8'>BARCODE NO</th>
+                    <th data-priority='9'>ENTRY DATE</th>
+                    <th data-priority='9'>SAFETY?</th>
+                    <th data-priority='9'></th>
+                  </tr>
+                </thead>
+                <tbody>";
+                  while($row = $result->fetch_assoc()) {
+                   echo " <tr> ";
+                   echo " <td>" . $row['ROWNUM'] . "</td>";
+                   echo " <td>" . $row['SNO'] . "</td>";
+                   echo " <td>" . $row['TRUCKNO'] . "</td>";
+                   echo " <td>" . $row['TRANSPORTER'] . "</td>";
+                   echo " <td>" . $row['DRIVERNAME'] . "</td>";
+                   echo " <td>" . $row['CAPACITY'] . "</td>";
+                   echo " <td>" . $row['PRODUCT'] . "</td>";
+                   echo " <td>" . $row['BDC'] . "</td>";
+                   echo " <td>" . $row['GENBARCODE'] . "</td>";
+                   echo " <td>" . $row['ENTRYDATE'] . "</td>";
+                   echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
+                   echo " <td> <input type=button id=btn_print value=Check /></td>";
+                   echo " </tr> "; 
+                  }
+
+                 echo "</tbody>
+                  </table>";                
+             $db_con->close();       
+            } 
+            
+            
+        } 
        ?>    
     
     </div>
@@ -103,10 +148,8 @@
                     
                     <label for="query_comment">Comments</label>
                     <textarea id="query_comment" cols="35" class="text ui-widget-content ui-corner-all"></textarea>
-                    
-                
                 </fieldset> 
-            
+             </form>
         </div>    
         
         
