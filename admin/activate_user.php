@@ -22,7 +22,26 @@
     <form id="user_activation_form">     
       <fieldset>
         <label for="user_name">User Name</label>
-        <input type="text" id="user_name"  class="text ui-widget-content ui-corner-all" />
+        
+        <select id="user_name" class="text ui-widget-content ui-corner-all">
+            <option value=>---</option>
+            <?php  
+                if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                    $query = "SELECT `FirstName`,`LastName`,`UserEmail`,`IsActive` FROM `user_account` WHERE IsActive != 'on' ";
+                    $result = $db_con->query($query);
+                     while($row = $result->fetch_assoc()) {
+
+                      echo "<option value='" . $row['UserEmail'] . "'> ". $row['FirstName'] . " " . $row['LastName']  ." </option>";                            
+
+                     }    
+
+                } 
+
+            ?>   
+        </select>
+        
+        
         <label for="user_level">User Level</label>           
         <select id="user_level" class="text ui-widget-content ui-corner-all" />
             <option value="">---</option>
@@ -116,6 +135,7 @@ $( function () {
                 function(data) {
                    if(data = '1'){
                        alert('User info successfully updated');
+                       location.reload();
                    }  else if(data = '-1'){
                        alert('Invalid data');
                    }
