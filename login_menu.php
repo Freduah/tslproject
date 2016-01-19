@@ -78,8 +78,7 @@ $(function () {
             $("#tom_watch_button").prop('disabled', false);   //tom_watch_dataentry_button
             $("#tom_watch_dataentry_button").prop('disabled', false); 
          } else if(result.userlevel === 'MANAGER'){
-            $("#data_entry_button").prop('disabled', false);
-            $("#tom_watch_dataentry_button").prop('disabled', false); 
+            $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
             $("#safety_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_entry_check_button").prop('disabled', true).css('color','gray'); 
@@ -87,7 +86,8 @@ $(function () {
             $("#ullaging_area_check_button").prop('disabled', true).css('color','gray');
             $("#invoice_check_button").prop('disabled', true).css('color','gray');
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
-            $("#tom_watch_button").prop('disabled', true).css('color','gray');
+            $("#tom_watch_dataentry_button").prop('disabled', false); 
+            $("#tom_watch_button").prop('disabled', false);
         } else if(result.userlevel === 'DATAENTRY'){
             $("#data_entry_button").prop('disabled', false);
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
