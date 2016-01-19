@@ -22,9 +22,11 @@
               $_SESSION['userlevel'] = $user_level;
               
               if ( $user_level === 'DATAENTRY' ){
-                   header("location: login_menu.php"); // Redirecting Login Menu
-                //header("location: truck_load_data_entry.php"); // Redirecting To Truck Data Entry                    
+                   header("location: login_menu.php");                   
               } 
+              else if( $user_level === 'MANAGER') {
+                 header("location: login_menu.php"); 
+              }
               else if ( $user_level === 'MARSHALING' ){
                 header("location: marshaling_area_check.php"); // Redirecting To Marshaling Area                   
               } else if ( $user_level === 'SAFETYCHECK' )
