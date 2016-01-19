@@ -28,38 +28,38 @@
                  header("location: login_menu.php"); 
               }
               else if ( $user_level === 'MARSHALING' ){
-                header("location: marshaling_area_check.php"); // Redirecting To Marshaling Area                   
+                 header("location: login_menu.php");                   
               } else if ( $user_level === 'SAFETYCHECK' )
               {
-                header("location: safety_check.php"); // Redirecting To Truck Safety Check  
+                header("location: login_menu.php");  
               }
                else if ( $user_level === 'SAFETYCHECKMANUAL' )
               {
-                header("location: safety_manual_check.php"); // Redirecting To Truck Safety Check  
+                header("location: login_menu.php");  
               }
               else if ( $user_level === 'TERMINALENTRYCHECK' )
               {
-                header("location: terminal_entry_check.php"); // Redirecting To Terminal Entry Check  
+                 header("location: login_menu.php");
               }
               else if ( $user_level === 'GANTRYCHECK' )
               {
-                header("location: gantry_check.php"); // Redirecting To Gantry Area Check 
+                 header("location: login_menu.php"); 
               }
               else if ( $user_level === 'ULLAGINGCHECK' )
               {
-                header("location: ullaging_area_check.php"); // Redirecting To Ullagin Area Check   
+                 header("location: login_menu.php");   
               }
               else if ( $user_level === 'INVOICECHECK' )
               {
-                header("location: invoice_check.php"); // Redirecting To Invoicing Check   
+                 header("location: login_menu.php");  
               }
               else if ( $user_level === 'TERMINALEXITCHECK' )
               {
-                header("location: terminal_exit_check.php"); // Redirecting To Terminal Exit Check   
+                 header("location: login_menu.php"); 
               }
               else if ( $user_level === 'ADMIN' )
               {
-                header("location: login_menu.php"); // Redirecting Login Menu   
+                header("location: login_menu.php");   
               } 
           }          
           } else {
