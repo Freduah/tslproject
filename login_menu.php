@@ -12,7 +12,7 @@
                         <td><input type="button" id="tom_watch_button" class="styled-login-menu-button" value="TOM WATCH TRUCKS STATUS" /></td>
                     </tr> 
                     <tr>
-                        <td><input type="button" id="tom_watch_dataentry_button" class="styled-login-menu-button" value="TOM WATCH DATA ENTRY" /></td>
+                        <td><input type="button" id="tom_watch_dataentry_button" class="styled-login-menu-button" value="TOM SAFETY CHECK" /></td>
                     </tr>
                 </table>
             </div>
@@ -221,7 +221,7 @@ $("#ullaging_area_check_button").click(function(){
   window.location.href='ullaging_area_check.php';   
 });
 $("#invoice_check_button").click(function(){
-  window.location.href='invoice_check.php';   
+  window.location.href='invoice_check_manual.php';   
 });
 $("#terminal_exit_check_button").click(function(){
   window.location.href='terminal_exit_check.php';   
