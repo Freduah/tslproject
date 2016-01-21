@@ -28,12 +28,10 @@ if($_SERVER['REQUEST_METHOD'] === "GET"){
        $serialno = mysqli_real_escape_string($db_con, $_POST['serialnumber']);
        $truckno = mysqli_real_escape_string($db_con, $_POST['truknumber']);
        $has_pass_safety = $_POST['pass_safety'];
-       $rejectionreason = mysqli_real_escape_string($db_con, $_POST['rejectionreason']);
-       $query_comments = mysqli_real_escape_string($db_con, $_POST['query_comments']);
        $curr_date = date('Y-m-d H:i:s');
        
-       $query = "UPDATE tsl_truck_load SET HASPASSEDSAFETY='$has_pass_safety', "
-               . " PASSEDSAFETYDATE='$curr_date', REJECTIONREASON='$rejectionreason', QUERYCOMMENTS='$query_comments' "
+       $query = "UPDATE tsl_truck_load SET INVOICE_CHECK='$has_pass_safety', "
+               . " INVOICE_CHECK_DATE='$curr_date' "
                . " WHERE SNO='$serialno'  AND TRUCKNO='$truckno' ";
        
          if ($db_con->query($query) === TRUE) {
