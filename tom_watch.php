@@ -321,7 +321,8 @@ $("#tbl_data_entry_watch td").each(function () {
           $(this).css('background-color', 'red');  
 	}
          else if (passed === '') {
-          $(this).css('background-color', 'yellow');  
+          $(this).css('background-color', 'yellow'); 
+          $(this).css('color', 'black');  
 	}
 });
 
