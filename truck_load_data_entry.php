@@ -9,63 +9,180 @@
     <div id="content">	
                
         <div id="truck_entry_dialog" title="Truck Entry And Loading">
-            <form id="truck_entry_and_load_form">
-                <label id="lbl_truck_entry_and_load_alert"></label>
-                <fieldset>
-                    <td><label for="add_truck_number">TRUCK NUMBER</label></td>
-                    <td><input type="text" id="add_truck_number" value="" class="text ui-widget-content ui-corner-all"></td>
+            <table>
+                <tr>
+                    <td>
+                        <div id="data-entry-detail-one">
+                                  
+                                <form id="truck_entry_and_load_form">
+                                    <label id="lbl_truck_entry_and_load_alert"></label>
+                                    <fieldset>
+                                        <table>
+                                            <tr>
+                                                <td><label for="entry_type">ENTRY TYPE</label></td> 
+                                                <td><select id="entry_type" class="text ui-widget-content ui-corner-all">
+                                                        <option value="">---</option>
+                                                        <option value="BOST">BOST</option>
+                                                        <option value="OMC">OMC</option>
+                                                    </select></td>
+                                            </tr> 
+                                            <tr>
+                                                <td><label for="waybill_number">WAYBILL NUMBER</label></td>
+                                                <td><input type="text" id="waybill_number" class="text ui-widget-content ui-corner-all"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="collection_order_number">COLLECTION ORDER</label></td>
+                                                <td><input type="text" id="collection_order_number" class="text ui-widget-content ui-corner-all"></td>
+                                            </tr>
+                                            <tr>    
+                                            <td><label for="add_truck_number">TRUCK NUMBER</label></td>
+                                            <td><input type="text" id="add_truck_number" value="" class="text ui-widget-content ui-corner-all"></td>
+                                            </tr>
+                                            <tr>
+                                            <td><label for="add_truck_transporter">TRANSPORTER</label></td>
+                                            <td><input type="text" id="add_truck_transporter" value="" class="text ui-widget-content ui-corner-all">  </td>
+                                            </tr>
+                                            <tr>
+                                            <td><label for="add_truck_driver">DRIVER NAME</label></td>
+                                            <td><input type="text" id="add_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
+                                            </tr>
+                                            <tr>
+                                            <td><label for="add_truck_capacity">CAPACITY (ltr)</label></td>
+                                            <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
+                                            </tr>
+                                            <tr>
+                                            <td><label for="add_truck_product">PRODUCT</label></td>
+                                            <td><select id="add_truck_product" class="text ui-widget-content ui-corner-all">
+                                                    <option value=>---</option>
+                                                    <?php  
+                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                    <td><label for="add_truck_transporter">TRANSPORTER</label></td>
-                    <td><input type="text" id="add_truck_transporter" value="" class="text ui-widget-content ui-corner-all">  </td>
+                                                            $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
+                                                            $result = $db_con->query($query);
+                                                             while($row = $result->fetch_assoc()) {
 
-                    <td><label for="add_truck_driver">DRIVER NAME</label></td>
-                    <td><input type="text" id="add_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
+                                                              echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
 
-                    <td><label for="add_truck_capacity">CAPACITY (ltr)</label></td>
-                    <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
+                                                             }    
 
-                    <td><label for="add_truck_product">PRODUCT</label></td>
-                    <td><select id="add_truck_product" class="text ui-widget-content ui-corner-all">
-                            <option value=>---</option>
-                            <?php  
-                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
-                                                                   
-                                    $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
-                                    $result = $db_con->query($query);
-                                     while($row = $result->fetch_assoc()) {
+                                                        } 
 
-                                      echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
+                                                    ?>   
+                                                </select> </td></tr>
+                                            <tr>
+                                            <td><label for="add_truck_bdc">BDC</label></td>
+                                            <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
+                                                    <option value=>---</option>
+                                                    <?php  
+                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                                     }    
-                                 
-                                } 
+                                                            $query = "SELECT * FROM `tsl_bdc`";
+                                                            $result = $db_con->query($query);
+                                                             while($row = $result->fetch_assoc()) {
+
+                                                              echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
+
+                                                             }    
+
+                                                        } 
+
+                                                    ?>                            
+                                                </select></td></tr>
+                                            
+                                            
+                                        </table>
+                                    </fieldset>                          
+                                </form>                            
+                        </div>  <!-- End of truck entry detail one -->
+                        
+                    </td>
+                    
+                    <td>
+                        
+                        <div id="truck-entry-detail-two">
                             
-                            ?>   
-                        </select> </td>
+                            <form id="truck_entry_and_load_form">
+                                    <label id="lbl_truck_entry_and_load_alert"></label>
+                                    <fieldset>
+                                        <table>
+                                            <tr>
+                                                <td><label for="countty_id">COUNTRY</label></td> 
+                                                <td><select id="country_id" class="text ui-widget-content ui-corner-all">
+                                                        <option value="">---</option>
+                                                        <option value="GH">GHANA</option>
+                                                        <option value="NG">NIGERIA</option>
+                                                    </select></td>
+                                            </tr>    
+                                        <tr>    
+                                        <td><label for="add_truck_number">TRUCK NUMBER</label></td>
+                                        <td><input type="text" id="add_truck_number" value="" class="text ui-widget-content ui-corner-all"></td>
+                                        </tr>
+                                        <tr>
+                                        <td><label for="add_truck_transporter">TRANSPORTER</label></td>
+                                        <td><input type="text" id="add_truck_transporter" value="" class="text ui-widget-content ui-corner-all">  </td>
+                                        </tr>
+                                        <tr>
+                                        <td><label for="add_truck_driver">DRIVER NAME</label></td>
+                                        <td><input type="text" id="add_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
+                                        </tr>
+                                        <tr>
+                                        <td><label for="add_truck_capacity">CAPACITY (ltr)</label></td>
+                                        <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
+                                        </tr>
+                                        <tr>
+                                        <td><label for="add_truck_product">PRODUCT</label></td>
+                                        <td><select id="add_truck_product" class="text ui-widget-content ui-corner-all">
+                                                <option value=>---</option>
+                                                <?php  
+                                                    if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                    <td><label for="add_truck_bdc">BDC</label></td>
-                    <td><td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
-                            <option value=>---</option>
-                            <?php  
-                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
-                                                                   
-                                    $query = "SELECT * FROM `tsl_bdc`";
-                                    $result = $db_con->query($query);
-                                     while($row = $result->fetch_assoc()) {
+                                                        $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
+                                                        $result = $db_con->query($query);
+                                                         while($row = $result->fetch_assoc()) {
 
-                                      echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
+                                                          echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
 
-                                     }    
-                                 
-                                } 
+                                                         }    
+
+                                                    } 
+
+                                                ?>   
+                                            </select> </td></tr>
+                                        <tr>
+                                        <td><label for="add_truck_bdc">BDC</label></td>
+                                        <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
+                                                <option value=>---</option>
+                                                <?php  
+                                                    if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                        $query = "SELECT * FROM `tsl_bdc`";
+                                                        $result = $db_con->query($query);
+                                                         while($row = $result->fetch_assoc()) {
+
+                                                          echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
+
+                                                         }    
+
+                                                    } 
+
+                                                ?>                            
+                                            </select></td></tr>
+                                          <tr>
+                                            <td><label for="add_truck_entry_date">ENTRY DATE</label></td>
+                                            <td><input type="text" id="add_truck_entry_date" value="" class="text ui-widget-content ui-corner-all"></td>
+                                          </tr>
+                                        </table>
+                                    </fieldset>                          
+                                </form>
                             
-                            ?>                            
-                        </select></td>
-
-                    <td><label for="add_truck_entry_date">ENTRY DATE</label></td>
-                    <td><input type="text" id="add_truck_entry_date" value="" class="text ui-widget-content ui-corner-all"></td>
-                </fieldset>                          
-            </form> 
+                                                              
+                        </div>  <!-- End Of Truck Entry Detail Two -->
+                        
+                        
+                        
+                    </td>
+                </tr>
+            </table>
         </div> <!-- End of Truck Entry Dialog div -->
        
         
@@ -252,7 +369,7 @@ $(function(){
        
        autoOpen: false,
        height: 570,
-       width: 400,
+       width: 800,
        modal: true,
        dialogClass: 'uititle',
         
