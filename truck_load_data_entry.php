@@ -171,6 +171,10 @@
                                                 <td><label for="omc_destination">OMC DESTINATION</label></td>
                                                 <td><input type="text" id="omc_destination" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
                                         </table>
                                     </fieldset>                          
                                 </form>
