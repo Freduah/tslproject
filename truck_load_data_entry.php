@@ -368,7 +368,7 @@ $(function(){
    $( "#truck_entry_dialog" ).dialog({
        
        autoOpen: false,
-       height: 530,
+       height: 520,
        width: 800,
        modal: true,
        dialogClass: 'uititle',
