@@ -119,6 +119,7 @@
                                                         <option value="">---</option>
                                                         <option value="GH">GHANA</option>
                                                         <option value="NG">NIGERIA</option>
+                                                        <option value="KN">KENYA</option>
                                                     </select></td>
                                             </tr>
                                             <tr>    
