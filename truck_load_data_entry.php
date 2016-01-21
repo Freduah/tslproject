@@ -40,7 +40,9 @@
                                             </tr>
                                             <tr>
                                             <td><label for="add_truck_transporter">TRANSPORTER</label></td>
-                                            <td><input type="text" id="add_truck_transporter" value="" class="text ui-widget-content ui-corner-all">  </td>
+                                            <td><select id="add_truck_transporter" class="text ui-widget-content ui-corner-all">
+                                                    <option value="">---</option>
+                                                </select></td>
                                             </tr>
                                             <tr>
                                             <td><label for="add_truck_driver">DRIVER NAME</label></td>
@@ -70,7 +72,7 @@
                                                     ?>   
                                                 </select> </td></tr>
                                             <tr>
-                                            <td><label for="add_truck_bdc">BDC</label></td>
+                                            <td><label for="add_truck_bdc">BDC (OWNER)</label></td>
                                             <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
                                                     <option value=>---</option>
                                                     <?php  
@@ -114,72 +116,21 @@
                                                     </select></td>
                                             </tr>    
                                         <tr>    
-                                        <td><label for="add_truck_number">TRUCK NUMBER</label></td>
-                                        <td><input type="text" id="add_truck_number" value="" class="text ui-widget-content ui-corner-all"></td>
+                                        <td><label for="add_lifted_from">LIFTED FROM</label></td>
+                                        <td><select id="add_lifted_from" class="text ui-widget-content ui-corner-all">
+                                                <option value="">---</option>
+                                            </select></td>
                                         </tr>
                                         <tr>
-                                        <td><label for="add_truck_transporter">TRANSPORTER</label></td>
-                                        <td><input type="text" id="add_truck_transporter" value="" class="text ui-widget-content ui-corner-all">  </td>
+                                        <td><label for="add_lifted_to">LIFTED TO</label></td>
+                                        <td><input type="text" id="add_lifted_to" value="" class="text ui-widget-content ui-corner-all">  </td>
                                         </tr>
-                                        <tr>
-                                        <td><label for="add_truck_driver">DRIVER NAME</label></td>
-                                        <td><input type="text" id="add_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
-                                        </tr>
-                                        <tr>
-                                        <td><label for="add_truck_capacity">CAPACITY (ltr)</label></td>
-                                        <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
-                                        </tr>
-                                        <tr>
-                                        <td><label for="add_truck_product">PRODUCT</label></td>
-                                        <td><select id="add_truck_product" class="text ui-widget-content ui-corner-all">
-                                                <option value=>---</option>
-                                                <?php  
-                                                    if($_SERVER['REQUEST_METHOD'] === 'GET'){
-
-                                                        $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
-                                                        $result = $db_con->query($query);
-                                                         while($row = $result->fetch_assoc()) {
-
-                                                          echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
-
-                                                         }    
-
-                                                    } 
-
-                                                ?>   
-                                            </select> </td></tr>
-                                        <tr>
-                                        <td><label for="add_truck_bdc">BDC</label></td>
-                                        <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
-                                                <option value=>---</option>
-                                                <?php  
-                                                    if($_SERVER['REQUEST_METHOD'] === 'GET'){
-
-                                                        $query = "SELECT * FROM `tsl_bdc`";
-                                                        $result = $db_con->query($query);
-                                                         while($row = $result->fetch_assoc()) {
-
-                                                          echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
-
-                                                         }    
-
-                                                    } 
-
-                                                ?>                            
-                                            </select></td></tr>
-                                          <tr>
-                                            <td><label for="add_truck_entry_date">ENTRY DATE</label></td>
-                                            <td><input type="text" id="add_truck_entry_date" value="" class="text ui-widget-content ui-corner-all"></td>
-                                          </tr>
+                                        
                                         </table>
                                     </fieldset>                          
-                                </form>
-                            
+                                </form>                    
                                                               
-                        </div>  <!-- End Of Truck Entry Detail Two -->
-                        
-                        
-                        
+                        </div>  <!-- End Of Truck Entry Detail Two -->                       
                     </td>
                 </tr>
             </table>
