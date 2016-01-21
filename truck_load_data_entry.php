@@ -93,7 +93,7 @@
                                                     ?>                            
                                                 </select></td></tr>
                                             <tr>    
-                                            <td><label for="add_lifted_from">LIFTED FROM</label></td>
+                                            <td><label for="add_lifted_from">DEPOT LIFTED FROM</label></td>
                                             <td><select id="add_lifted_from" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
                                                 </select></td>
@@ -122,7 +122,7 @@
                                                     </select></td>
                                             </tr>
                                             <tr>    
-                                            <td><label for="add_lifted_to">LIFTED TO</label></td>
+                                            <td><label for="add_lifted_to">DEPOT LIFTED TO</label></td>
                                             <td><select id="add_lifted_to" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
                                                 </select></td>
@@ -367,7 +367,7 @@ $(function(){
    $( "#truck_entry_dialog" ).dialog({
        
        autoOpen: false,
-       height: 570,
+       height: 530,
        width: 800,
        modal: true,
        dialogClass: 'uititle',
