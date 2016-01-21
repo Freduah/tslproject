@@ -73,7 +73,7 @@
                                                     ?>   
                                                 </select> </td></tr>
                                             <tr>
-                                            <td><label for="add_truck_bdc">BDC (OWNER)</label></td>
+                                            <td><label for="add_truck_bdc">BDC COMPANY</label></td>
                                             <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
                                                     <option value=>---</option>
                                                     <?php  
@@ -120,29 +120,12 @@
                                                         <option value="NG">NIGERIA</option>
                                                     </select></td>
                                             </tr>
-                                            <tr>
+                                            <tr>    
                                             <td><label for="add_lifted_to">LIFTED TO</label></td>
-                                            <td><input type="text" id="add_lifted_to" value="" class="text ui-widget-content ui-corner-all">  </td>
+                                            <td><select id="add_lifted_to" class="text ui-widget-content ui-corner-all">
+                                                    <option value="">---</option>
+                                                </select></td>
                                             </tr>
-                                            <tr>
-                                            <td><label for="add_bdc_type">BDC TYPE</label></td>
-                                            <td><select id="add_bdc_type" class="text ui-widget-content ui-corner-all">
-                                                    <option value=>---</option>
-                                                    <?php  
-                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
-
-                                                            $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
-                                                            $result = $db_con->query($query);
-                                                             while($row = $result->fetch_assoc()) {
-
-                                                              echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
-
-                                                             }    
-
-                                                        } 
-
-                                                    ?>   
-                                                </select> </td></tr>
                                             <tr>
                                             <td><label for="add_omc_type">OMC TYPE</label></td>
                                             <td><select id="add_omc_type" class="text ui-widget-content ui-corner-all">
