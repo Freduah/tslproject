@@ -155,7 +155,11 @@ $( "#truck_invoice_check_manual_dialog" ).dialog({
           var truckno = $( "#truck_number" ).val();
           var serialno = $( "#serial_number" ).val();
           var has_passed_safety = $( "#invoice_check" ).val();
-
+          
+          if(has_passed_safety === ' '){
+              valid = false;
+              alert('Select invoice option');
+          }
 
           if (valid)
           {
@@ -171,9 +175,9 @@ $( "#truck_invoice_check_manual_dialog" ).dialog({
 
                         $( "#truck_number" ).val(' ');
                         $( "#serial_number" ).val(' ');
-                        $( "#invoice_check" ).val(' ');
+                        $( "#invoice_check" ).val('Y');
            
-                        alert('Truck allowed for loading.');
+                        alert('Truck invoicing accepted.');
                         
                         location.reload();
 
@@ -181,10 +185,11 @@ $( "#truck_invoice_check_manual_dialog" ).dialog({
 
                         $( "#truck_number" ).val(' ');
                         $( "#serial_number" ).val(' ');
-                        $( "#invoice_check" ).val(' ');
+                        $( "#invoice_check" ).val('N');
 
-                        alert('Truck rejected for loading.');  
-
+                        alert('Truck invoicing rejected.');  
+                        location.reload();
+                        
                        }
 
                     $( "#truck_invoice_check_manual_dialog" ).dialog("close");    
