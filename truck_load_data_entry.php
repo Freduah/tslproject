@@ -7,7 +7,8 @@
 <div id="content-wrapper" class="clearfix row">
   <div class="content-full full-width twelve columns">
     <div id="content">	
-               
+        
+        
         <div id="truck_entry_dialog" title="Truck Entry And Loading">
             <table>
                 <tr>
