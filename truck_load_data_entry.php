@@ -13,10 +13,8 @@
                 <tr>
                     <td>
                         <div id="data-entry-detail-one">
-                                  
-                                <form id="truck_entry_and_load_form">
                                     <label id="lbl_truck_entry_and_load_alert"></label>
-                                    <fieldset>
+                                    
                                         <table>
                                             <tr>
                                                 <td><label for="entry_type">ENTRY TYPE</label></td> 
@@ -72,7 +70,7 @@
                                                     ?>   
                                                 </select> </td></tr>
                                             <tr>
-                                            <td><label for="add_truck_bdc">BDC (OWNER)</label></td>
+                                            <td><label for="add_truck_bdc">OWNER (BDC)</label></td>
                                             <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
                                                     <option value=>---</option>
                                                     <?php  
@@ -92,9 +90,7 @@
                                                 </select></td></tr>
                                             
                                             
-                                        </table>
-                                    </fieldset>                          
-                                </form>                            
+                                        </table>                                                  
                         </div>  <!-- End of truck entry detail one -->
                         
                     </td>
@@ -103,9 +99,7 @@
                         
                         <div id="truck-entry-detail-two">
                             
-                            <form id="truck_entry_and_load_form">
                                     <label id="lbl_truck_entry_and_load_alert"></label>
-                                    <fieldset>
                                         <table>
                                             <tr>
                                                 <td><label for="countty_id">COUNTRY</label></td> 
@@ -126,9 +120,7 @@
                                         <td><input type="text" id="add_lifted_to" value="" class="text ui-widget-content ui-corner-all">  </td>
                                         </tr>
                                         
-                                        </table>
-                                    </fieldset>                          
-                                </form>                    
+                                        </table>                                      
                                                               
                         </div>  <!-- End Of Truck Entry Detail Two -->                       
                     </td>
