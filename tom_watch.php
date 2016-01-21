@@ -338,9 +338,18 @@ $("#tbl_safety_watch td").each(function () {
           $(this).css('background-color', 'red');  
 	}
 });
-  
-  
-  
+
+$("#tbl_invoice_watch td").each(function () {
+
+	var truck = $(this).closest('tr').find('td:eq(2)').text();
+	
+	
+	if (truck !== '') {
+          $(this).css('background-color', 'blue');
+          $(this).css('color', 'white');
+	} 
+});
+   
 });
 
 
