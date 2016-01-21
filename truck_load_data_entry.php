@@ -50,7 +50,7 @@
                                             <td><input type="text" id="add_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
                                             <tr>
-                                            <td><label for="add_truck_capacity">CAPACITY (ltr)</label></td>
+                                            <td><label for="add_truck_capacity">CAPACITY(QTY) Ltr</label></td>
                                             <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
                                             <tr>
