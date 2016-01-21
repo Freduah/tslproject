@@ -139,10 +139,11 @@
      if(!empty($_SESSION['login_user_name']))
      {
       $user_name = $_SESSION['login_user_name'];
-      
+      $curr_date = date('Y-m-d H:i:s');
       $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
               . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE  FROM tsl_truck_load AS t, "
-              . "(SELECT @i:=0) AS foo WHERE t.CREATEDBY='$user_name' AND t.HASPASSEDSAFETY !='Y' ORDER BY t.ENTRYDATE DESC LIMIT 15";
+              . "(SELECT @i:=0) AS foo WHERE t.CREATEDBY='$user_name' AND t.HASPASSEDSAFETY !='Y' "
+              . " AND DATE(t.ENTRYDATE) = DATE('$curr_date') ORDER BY t.ENTRYDATE DESC LIMIT 15";
               
       $result = $db_con->query($query);
       
