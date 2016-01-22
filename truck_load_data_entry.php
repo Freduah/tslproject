@@ -44,6 +44,20 @@
                                             <td><label for="add_truck_transporter">TRANSPORTER</label></td>
                                             <td><select id="add_truck_transporter" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
+                                                    <?php  
+                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                $query = "SELECT `TRANPORTER_CODE`,`TRANSPORTER_NAME`,`Description` FROM `tsl_transporter`";
+                                                                $result = $db_con->query($query);
+                                                                 while($row = $result->fetch_assoc()) {
+
+                                                                  echo "<option value='" . $row['TRANPORTER_CODE'] . "'> ". $row['TRANSPORTER_NAME'] . " " . $row['Description']  ." </option>";                            
+
+                                                                 }    
+
+                                                        } 
+
+                                                    ?>   
                                                 </select></td>
                                             </tr>
                                             <tr>
@@ -54,22 +68,6 @@
                                             <td><label for="add_truck_capacity">CAPACITY(QTY) Ltr</label></td>
                                             <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
-                                              
-                                            
-                                        </table>
-                                    </fieldset>                          
-                                </form>                            
-                        </div>  <!-- End of truck entry detail one -->
-                        
-                    </td>
-                    
-                    <td>
-                        
-                        <div id="truck-entry-detail-two">
-                            
-                            <form id="truck_entry_and_load_form">
-                                    <fieldset>
-                                        <table>
                                             <tr>
                                             <td><label for="add_truck_product">PRODUCT</label></td>
                                             <td><select id="add_truck_product" class="text ui-widget-content ui-corner-all">
@@ -88,7 +86,22 @@
                                                         } 
 
                                                     ?>   
-                                                </select> </td></tr>
+                                                </select> </td></tr>                                           
+                                            
+                                        </table>
+                                    </fieldset>                          
+                                </form>                            
+                        </div>  <!-- End of truck entry detail one -->
+                        
+                    </td>
+                    
+                    <td>
+                        
+                        <div id="truck-entry-detail-two">
+                            
+                            <form id="truck_entry_and_load_form">
+                                    <fieldset>
+                                        <table>
                                             <tr>
                                             <td><label for="add_truck_bdc">BDC COMPANY</label></td>
                                             <td><select id="add_truck_bdc" class="text ui-widget-content ui-corner-all">
@@ -96,11 +109,11 @@
                                                     <?php  
                                                         if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                                                            $query = "SELECT * FROM `tsl_bdc`";
+                                                            $query = "SELECT `bdcCode`,`bdcName`,`Description` FROM `tsl_bdc`";
                                                             $result = $db_con->query($query);
                                                              while($row = $result->fetch_assoc()) {
 
-                                                              echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
+                                                              echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcName'] . " " . $row['Description']  ." </option>";                            
 
                                                              }    
 
@@ -109,33 +122,83 @@
                                                     ?>                            
                                                 </select></td></tr>
                                             <tr>
-                                                <td><label for="countty_lifted_from">COUNTRY LIFTED FROM</label></td> 
-                                                <td><select id="countty_lifted_from" class="text ui-widget-content ui-corner-all">
+                                                <td><label for="country_lifted_from">COUNTRY LIFTED FROM</label></td> 
+                                                <td><select id="country_lifted_from" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
-                                                        <option value="GH">GHANA</option>
-                                                        <option value="NG">NIGERIA</option>
-                                                        <option value="KN">KENYA</option>
+                                                        <?php  
+                                                            if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                    $query = "SELECT `Country_Code`,`Country_Name`,`Description` FROM `tsl_country`";
+                                                                    $result = $db_con->query($query);
+                                                                     while($row = $result->fetch_assoc()) {
+
+                                                                      echo "<option value='" . $row['Country_Code'] . "'> ". $row['Country_Name'] . " " . $row['Description']  ." </option>";                            
+
+                                                                     }    
+
+                                                            } 
+
+                                                        ?>   
                                                     </select></td>
                                             </tr>
                                             <tr>    
                                             <td><label for="add_lifted_from">DEPOT LIFTED FROM</label></td>
                                             <td><select id="add_lifted_from" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
+                                                    <?php  
+                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                $query = "SELECT `DepotCode`,`DepotName`,`Description` FROM `tsl_depot`";
+                                                                $result = $db_con->query($query);
+                                                                 while($row = $result->fetch_assoc()) {
+
+                                                                  echo "<option value='" . $row['DepotCode'] . "'> ". $row['DepotName'] . " " . $row['Description']  ." </option>";                            
+
+                                                                 }    
+
+                                                        } 
+
+                                                    ?>   
                                                 </select></td>
-                                            </tr>
+                                            </tr>    
                                             <tr>
-                                                <td><label for="countty_lifted_to">COUNTRY LIFTED TO</label></td> 
-                                                <td><select id="countty_lifted_to" class="text ui-widget-content ui-corner-all">
+                                                <td><label for="country_lifted_to">COUNTRY LIFTED TO</label></td> 
+                                                <td><select id="country_lifted_to" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
-                                                        <option value="GH">GHANA</option>
-                                                        <option value="NG">NIGERIA</option>
-                                                        <option value="KN">KENYA</option>
+                                                        <?php  
+                                                            if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                    $query = "SELECT `Country_Code`,`Country_Name`,`Description` FROM `tsl_country`";
+                                                                    $result = $db_con->query($query);
+                                                                     while($row = $result->fetch_assoc()) {
+
+                                                                      echo "<option value='" . $row['Country_Code'] . "'> ". $row['Country_Name'] . " " . $row['Description']  ." </option>";                            
+
+                                                                     }    
+
+                                                            } 
+
+                                                        ?>   
                                                     </select></td>
                                             </tr>
                                             <tr>    
                                             <td><label for="add_lifted_to">DEPOT LIFTED TO</label></td>
                                             <td><select id="add_lifted_to" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
+                                                    <?php  
+                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                $query = "SELECT `DepotCode`,`DepotName`,`Description` FROM `tsl_depot`";
+                                                                $result = $db_con->query($query);
+                                                                 while($row = $result->fetch_assoc()) {
+
+                                                                  echo "<option value='" . $row['DepotCode'] . "'> ". $row['DepotName'] . " " . $row['Description']  ." </option>";                            
+
+                                                                 }    
+
+                                                        } 
+
+                                                    ?>   
                                                 </select></td>
                                             </tr>
                                             <tr>
@@ -145,11 +208,11 @@
                                                     <?php  
                                                         if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                                                            $query = "SELECT * FROM `tsl_bdc`";
+                                                            $query = "SELECT `OMC_CODE`,`OMC_NAME`,`Description` FROM `tsl_omc_type`";
                                                             $result = $db_con->query($query);
                                                              while($row = $result->fetch_assoc()) {
 
-                                                              echo "<option value='" . $row['bdcCode'] . "'> ". $row['bdcCode'] . " " . $row['Description']  ." </option>";                            
+                                                              echo "<option value='" . $row['OMC_CODE'] . "'> ". $row['OMC_NAME'] . " " . $row['Description']  ." </option>";                            
 
                                                              }    
 
@@ -157,14 +220,13 @@
 
                                                     ?>                            
                                                 </select></td></tr>
-                                            
                                             <tr>
                                                 <td><label for="omc_destination">OMC DESTINATION</label></td>
                                                 <td><input type="text" id="omc_destination" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
                                             <tr>
-                                                <td></td>
-                                                <td></td>
+                                                <td><label for="">TRUCK ENTRY DATE</label></td>
+                                                <td><input type="text" id="add_truck_entry_date" class="text ui-widget-content ui-corner-all"</td>
                                             </tr>
                                         </table>
                                     </fieldset>                          
