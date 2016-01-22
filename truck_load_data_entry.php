@@ -18,23 +18,33 @@
                                   
                                 <form id="truck_entry_and_load_form">
                                     <fieldset>
-                                        <table>
+                                        <table style="width: 380px;">
                                             <tr>
                                                 <td><label for="entry_type">ENTRY TYPE</label></td> 
                                                 <td><select id="entry_type" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
-                                                        <option value="BOST">BOST</option>
-                                                        <option value="BOST-BDC">BOST-BDC</option>
-                                                        <option value="BDC">BDC</option>
+                                                        <?php  
+                                                            if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                    $query = "SELECT `EntryCode`,`EntryType`,`Description` FROM `tsl_entry_type`";
+                                                                    $result = $db_con->query($query);
+                                                                     while($row = $result->fetch_assoc()) {
+
+                                                                      echo "<option value='" . $row['EntryCode'] . "'> ". $row['EntryType'] . " " . $row['Description']  ." </option>";                            
+
+                                                                     }    
+
+                                                            } 
+                                                        ?>   
                                                     </select></td>
                                             </tr> 
                                             <tr>
-                                                <td><label for="waybill_number">WAYBILL NUMBER</label></td>
-                                                <td><input type="text" id="waybill_number" class="text ui-widget-content ui-corner-all"></td>
+                                                <td><label for="add_truck_waybill_number">WAYBILL NUMBER</label></td>
+                                                <td><input type="text" id="add_truck_waybill_number" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
                                             <tr>
-                                                <td><label for="collection_order_number">COLLECTION ORDER</label></td>
-                                                <td><input type="text" id="collection_order_number" class="text ui-widget-content ui-corner-all"></td>
+                                                <td><label for="add_truck_collection_order_number">COLLECTION ORDER</label></td>
+                                                <td><input type="text" id="add_truck_collection_order_number" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
                                             <tr>    
                                             <td><label for="add_truck_number">TRUCK NUMBER</label></td>
@@ -122,8 +132,8 @@
                                                     ?>                            
                                                 </select></td></tr>
                                             <tr>
-                                                <td><label for="country_lifted_from">COUNTRY LIFTED FROM</label></td> 
-                                                <td><select id="country_lifted_from" class="text ui-widget-content ui-corner-all">
+                                                <td><label for="add_country_lifted_from">COUNTRY LIFTED FROM</label></td> 
+                                                <td><select id="add_country_lifted_from" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
                                                         <?php  
                                                             if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -142,8 +152,8 @@
                                                     </select></td>
                                             </tr>
                                             <tr>    
-                                            <td><label for="add_lifted_from">DEPOT LIFTED FROM</label></td>
-                                            <td><select id="add_lifted_from" class="text ui-widget-content ui-corner-all">
+                                            <td><label for="add_depot_lifted_from">DEPOT LIFTED FROM</label></td>
+                                            <td><select id="add_depot_lifted_from" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
                                                     <?php  
                                                         if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -162,8 +172,8 @@
                                                 </select></td>
                                             </tr>    
                                             <tr>
-                                                <td><label for="country_lifted_to">COUNTRY LIFTED TO</label></td> 
-                                                <td><select id="country_lifted_to" class="text ui-widget-content ui-corner-all">
+                                                <td><label for="add_country_lifted_to">COUNTRY LIFTED TO</label></td> 
+                                                <td><select id="add_country_lifted_to" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
                                                         <?php  
                                                             if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -182,8 +192,8 @@
                                                     </select></td>
                                             </tr>
                                             <tr>    
-                                            <td><label for="add_lifted_to">DEPOT LIFTED TO</label></td>
-                                            <td><select id="add_lifted_to" class="text ui-widget-content ui-corner-all">
+                                            <td><label for="add_depot_lifted_to">DEPOT LIFTED TO</label></td>
+                                            <td><select id="add_depot_lifted_to" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
                                                     <?php  
                                                         if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -221,8 +231,8 @@
                                                     ?>                            
                                                 </select></td></tr>
                                             <tr>
-                                                <td><label for="omc_destination">OMC DESTINATION</label></td>
-                                                <td><input type="text" id="omc_destination" class="text ui-widget-content ui-corner-all"></td>
+                                                <td><label for="add_omc_destination">OMC DESTINATION</label></td>
+                                                <td><input type="text" id="add_omc_destination" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
                                             <tr>
                                                 <td><label for="">TRUCK ENTRY DATE</label></td>
@@ -635,6 +645,28 @@ $(function(){
         }
        $("#add_truck_number").val(($("#add_truck_number").val()).toUpperCase());      
    });
+   
+   $( "#add_truck_waybill_number" ).on('input', function(e){
+             
+       if (e.which >= 97 && e.which <= 122) {
+        var newKey = e.which - 32;
+        // I have tried setting those
+        e.keyCode = newKey;
+        e.charCode = newKey;
+        }
+       $("#add_truck_waybill_number").val(($("#add_truck_waybill_number").val()).toUpperCase());      
+    });
+
+    $( "#add_truck_collection_order_number" ).on('input', function(e){
+             
+       if (e.which >= 97 && e.which <= 122) {
+        var newKey = e.which - 32;
+        // I have tried setting those
+        e.keyCode = newKey;
+        e.charCode = newKey;
+        }
+       $("#add_truck_collection_order_number").val(($("#add_truck_collection_order_number").val()).toUpperCase());      
+    });
    
    
    /// For Tuck Transporter Input Box Code
