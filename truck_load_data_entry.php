@@ -20,8 +20,8 @@
                                     <fieldset>
                                         <table style="width: 380px;">
                                             <tr>
-                                                <td><label for="entry_type">ENTRY TYPE</label></td> 
-                                                <td><select id="entry_type" class="text ui-widget-content ui-corner-all">
+                                                <td><label for="add_entry_type">ENTRY TYPE</label></td> 
+                                                <td><select id="add_entry_type" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
                                                         <?php  
                                                             if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -435,7 +435,7 @@ $(function(){
    $( "#truck_entry_dialog" ).dialog({
        
        autoOpen: false,
-       height: 520,
+       height: 500,
        width: 800,
        modal: true,
        dialogClass: 'uititle',
@@ -558,6 +558,19 @@ $(function(){
       var product = $( "#add_truck_product" ).val();
       var bdc = $( "#add_truck_bdc" ).val();
       var entry_date = $( "#add_truck_entry_date" ).val();
+      
+      var entry_type = $( "#add_entry_type" ).val(); 
+      var omc_type = $( "#add_omc_type" ).val();
+      var omc_destination = $( "#add_omc_destination" ).val();
+      var depot_lifted_to = $( "#add_depot_lifted_to" ).val();
+      var country_lifted_to = $( "#add_country_lifted_to" ).val();
+      var depot_lifted_from = $( "#add_depot_lifted_from" ).val();
+      var country_lifted_from = $( "#add_country_lifted_from" ).val();
+      var truck_waybill_number = $( "#add_truck_waybill_number" ).val();
+      var truck_collection_order_number = $( "#add_truck_collection_order_number" ).val();
+
+
+      
       var unique_serial_no = generateUUID();
       var genbar_code = '*' + unique_serial_no + $( "#add_truck_number" ).val() + '*';
       
@@ -600,7 +613,10 @@ $(function(){
           $.post("truck_load_data_entry.php", 
           {
             truckno:truck_no, transporter:transporter, driver:driver, capacity:capacity, product:product, 
-            bdc:bdc, entry_date:entry_date, usno:unique_serial_no, genbarcode:genbar_code 
+            bdc:bdc, entry_date:entry_date, usno:unique_serial_no, genbarcode:genbar_code,
+            entrytype:entry_type,omctype:omc_type,omcdestination:omc_destination,depotliftedto:depot_lifted_to,
+            countryliftedto:country_lifted_to,depotliftedfrom:depot_lifted_from,countryliftedfrom:country_lifted_from,
+            waybillnumber:truck_waybill_number,collectionordernumber:truck_collection_order_number            
           }, 
           function( ){
               
@@ -891,7 +907,18 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         $usno = mysqli_real_escape_string($db_con, $_POST['usno']);
         $genbarcode = mysqli_real_escape_string($db_con, $_POST['genbarcode']);
         $genbarcodedate = date('Y-m-d H:i:s');
+        
+        $entry_type = mysqli_real_escape_string($db_con, $_POST['entrytype']);
+        $omc_type = mysqli_real_escape_string($db_con, $_POST['omctype']);
+        $omcdestination = mysqli_real_escape_string($db_con, $_POST['omcdestination']);
+        $depliftedfrom = mysqli_real_escape_string($db_con, $_POST['depotliftedfrom']);
+        $depliftedto = mysqli_real_escape_string($db_con, $_POST['depotliftedto']);
+        $countryfrom =  mysqli_real_escape_string($db_con, $_POST['countryliftedfrom']);
+        $countryto = mysqli_real_escape_string($db_con, $_POST['countryliftedto']);
+        $waybillnumber = mysqli_real_escape_string($db_con, $_POST['waybillnumber']);
+        $collectionordernumber = mysqli_real_escape_string($db_con, $_POST['collectionordernumber']);
        
+        
         if(!empty($_SESSION['login_user_name']) !== NULL || !empty($_SESSION['login_user_name']) !== ""){
             $user_name = $_SESSION['login_user_name'];
             $query = "INSERT INTO tsl_truck_load (SNO, TRUCKNO, TRANSPORTER, DRIVERNAME, CAPACITY, PRODUCT, BDC, ENTRYDATE, CREATEDBY, GENBARCODE, GENBARCODEDATE) "
