@@ -27,6 +27,10 @@ a,
 	margin-bottom: 15px; height: 400px; width: auto; overflow:auto;
 }
 
+#tom-watch-data-display-incoming-trucks {
+	margin-bottom: 15px; height: 800px; width: auto; overflow:auto;
+}
+
 #tom-watch-safety-scroll {
 	margin-bottom: 15px; height: 400px; width: auto; overflow:auto;
 }
