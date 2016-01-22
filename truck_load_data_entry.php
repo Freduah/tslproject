@@ -54,6 +54,22 @@
                                             <td><label for="add_truck_capacity">CAPACITY(QTY) Ltr</label></td>
                                             <td><input type="text" id="add_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
                                             </tr>
+                                              
+                                            
+                                        </table>
+                                    </fieldset>                          
+                                </form>                            
+                        </div>  <!-- End of truck entry detail one -->
+                        
+                    </td>
+                    
+                    <td>
+                        
+                        <div id="truck-entry-detail-two">
+                            
+                            <form id="truck_entry_and_load_form">
+                                    <fieldset>
+                                        <table>
                                             <tr>
                                             <td><label for="add_truck_product">PRODUCT</label></td>
                                             <td><select id="add_truck_product" class="text ui-widget-content ui-corner-all">
@@ -92,30 +108,24 @@
 
                                                     ?>                            
                                                 </select></td></tr>
+                                            <tr>
+                                                <td><label for="countty_lifted_from">COUNTRY LIFTED FROM</label></td> 
+                                                <td><select id="countty_lifted_from" class="text ui-widget-content ui-corner-all">
+                                                        <option value="">---</option>
+                                                        <option value="GH">GHANA</option>
+                                                        <option value="NG">NIGERIA</option>
+                                                        <option value="KN">KENYA</option>
+                                                    </select></td>
+                                            </tr>
                                             <tr>    
                                             <td><label for="add_lifted_from">DEPOT LIFTED FROM</label></td>
                                             <td><select id="add_lifted_from" class="text ui-widget-content ui-corner-all">
                                                     <option value="">---</option>
                                                 </select></td>
-                                            </tr>    
-                                            
-                                        </table>
-                                    </fieldset>                          
-                                </form>                            
-                        </div>  <!-- End of truck entry detail one -->
-                        
-                    </td>
-                    
-                    <td>
-                        
-                        <div id="truck-entry-detail-two">
-                            
-                            <form id="truck_entry_and_load_form">
-                                    <fieldset>
-                                        <table>
+                                            </tr>
                                             <tr>
-                                                <td><label for="countty_id">COUNTRY</label></td> 
-                                                <td><select id="country_id" class="text ui-widget-content ui-corner-all">
+                                                <td><label for="countty_lifted_to">COUNTRY LIFTED TO</label></td> 
+                                                <td><select id="countty_lifted_to" class="text ui-widget-content ui-corner-all">
                                                         <option value="">---</option>
                                                         <option value="GH">GHANA</option>
                                                         <option value="NG">NIGERIA</option>
@@ -147,26 +157,7 @@
 
                                                     ?>                            
                                                 </select></td></tr>
-                                            <tr>
-                                                <td><label for="seal_number">SEAL NUMBER</label></td>
-                                                <td><input type="text" id="seal_number" class="text ui-widget-content ui-corner-all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="density_level">DENSITY LEVEL</label></td>
-                                                <td><input type="text" id="density_level" class="text ui-widget-content ui-corner-all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="dip_level">DIP LEVEL</label></td>
-                                                <td><input type="text" id="dip_level" class="text ui-widget-content ui-corner-all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="water_level">WATER LEVEL</label></td>
-                                                <td><input type="text" id="water_level" class="text ui-widget-content ui-corner-all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="temperature_level">TEMPERATURE</label></td>
-                                                <td><input type="text" id="temperature_level" class="text ui-widget-content ui-corner-all"></td>
-                                            </tr>
+                                            
                                             <tr>
                                                 <td><label for="omc_destination">OMC DESTINATION</label></td>
                                                 <td><input type="text" id="omc_destination" class="text ui-widget-content ui-corner-all"></td>
