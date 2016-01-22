@@ -919,10 +919,11 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         $capacity = mysqli_real_escape_string($db_con, $_POST['capacity']);
         $product = mysqli_real_escape_string($db_con, $_POST['product']);
         $bdc = mysqli_real_escape_string($db_con, $_POST['bdc']);
-        $entry_date = mysqli_real_escape_string($db_con, $_POST['entry_date']); 
+        $entrydate = mysqli_real_escape_string($db_con, $_POST['entry_date']); 
         $usno = mysqli_real_escape_string($db_con, $_POST['usno']);
         $genbarcode = mysqli_real_escape_string($db_con, $_POST['genbarcode']);
         $genbarcodedate = date('Y-m-d H:i:s');
+        $entry_date = date("Y-m-d");
         
         $entry_type = mysqli_real_escape_string($db_con, $_POST['entrytype']);
         $waybillnumber = mysqli_real_escape_string($db_con, $_POST['waybillnumber']);
