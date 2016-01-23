@@ -352,7 +352,4 @@ $("#tbl_invoice_watch td").each(function () {
    
 });
 
-
-
-
 </script>
