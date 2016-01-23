@@ -248,6 +248,10 @@ $("#tom_watch_dataentry_button").click(function(){
   window.location.href='tom_watch_data_entry.php';      
 });
 
+$("#tom_data_entry_button").click(function(){
+  window.location.href='tom_data_entry.php';  
+});
+
 });
 
 </script>
