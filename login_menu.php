@@ -14,6 +14,9 @@
                     <tr>
                         <td><input type="button" id="tom_watch_dataentry_button" class="styled-login-menu-button" value="TOM SAFETY CHECK" /></td>
                     </tr>
+                    <tr>
+                        <td><input type="button" id="tom_data_entry_button" class="styled-login-menu-button" value="TOM DATA ENTRY" /></td>
+                    </tr>
                 </table>
             </div>
             <div class="features-box row eight columns pull-four">
@@ -77,6 +80,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', false); 
             $("#tom_watch_button").prop('disabled', false);   //tom_watch_dataentry_button
             $("#tom_watch_dataentry_button").prop('disabled', false); 
+            $("#tom_data_entry_button").prop('disabled', false);
          } else if(result.userlevel === 'MANAGER'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -88,6 +92,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_dataentry_button").prop('disabled', false); 
             $("#tom_watch_button").prop('disabled', false);
+            $("#tom_data_entry_button").prop('disabled', false);
         } else if(result.userlevel === 'DATAENTRY'){
             $("#data_entry_button").prop('disabled', false);
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -99,6 +104,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', false);
          } else if(result.userlevel === 'MARSHALING'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', false);
@@ -110,6 +116,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'SAFETYCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -121,6 +128,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'SAFETYCHECKMANUAL'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', false);
@@ -133,6 +141,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'TERMINALENTRYCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -145,6 +154,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'GANTRYCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -157,6 +167,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'ULLAGINGCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -169,6 +180,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray'); 
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'INVOICECHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -180,6 +192,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', true).css('color','gray');  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          } else if(result.userlevel === 'TERMINALEXITCHECK'){
             $("#data_entry_button").prop('disabled', true).css('color','gray');
             $("#marshaling_area_check_button").prop('disabled', true).css('color','gray');
@@ -192,6 +205,7 @@ $(function () {
             $("#terminal_exit_check_button").prop('disabled', false);  
             $("#tom_watch_button").prop('disabled', true).css('color','gray');
             $("#tom_watch_dataentry_button").prop('disabled', true).css('color','gray'); 
+            $("#tom_data_entry_button").prop('disabled', true).css('color','gray');
          }        
          
          
