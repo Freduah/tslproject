@@ -6,7 +6,7 @@
         <div class="six columns offset-by-three">
             <ul class="menu-main">
                 <li>
-                    <a href="#">Main Menu</a>
+                    <a href="login_menu.php">Main Menu</a>
                 </li>
 
             </ul>
