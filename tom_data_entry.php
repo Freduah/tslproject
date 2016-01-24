@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td><label for="country_desc">DESCRIPTION</label></td>
-                    <td><textarea id="country_desc" cols="30" class="text ui-widget-content ui-corner-all"></textarea></td>
+                    <td><textarea id="country_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
                 </tr>
             </table>            
         </div>
@@ -48,7 +48,7 @@
                 </tr>
                 <tr>
                     <td><label for="bdc_desc">DESCRIPTION</label></td>
-                    <td><textarea id="bdc_desc" cols="30" class="text ui-widget-content ui-corner-all"></textarea></td>
+                    <td><textarea id="bdc_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
                 </tr>
             </table>            
         </div>
@@ -65,7 +65,7 @@
                 </tr>
                 <tr>
                     <td><label for="depot_ctr_code">COUNTRY</label></td>
-                    <td><select id="add_country_lifted_from" class="text ui-widget-content ui-corner-all">
+                    <td><select id="depot_ctr_code" class="text ui-widget-content ui-corner-all">
                             <option value="">---</option>
                             <?php  
                                 if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -84,8 +84,46 @@
                         </select></td>
                 </tr>
                 <tr>
-                    <td><label for="bdc_desc">DESCRIPTION</label></td>
-                    <td><textarea id="bdc_desc" cols="30" class="text ui-widget-content ui-corner-all"></textarea></td>
+                    <td><label for="depot_desc">DESCRIPTION</label></td>
+                    <td><textarea id="depot_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
+                </tr>
+            </table>            
+        </div>
+        
+        
+        <div id="omc_entry_dailog" title="OMC ENTRY">
+            <table>
+                <tr>
+                    <td><label for="omc_code">OMC CODE</label></td>
+                    <td><input type="text" id="omc_code" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td><label for="omc_name">OMC NAME</label></td>
+                    <td><input type="text" id="omc_name" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td><label for="omc_ctr_code">COUNTRY</label></td>
+                    <td><select id="omc_ctr_code" class="text ui-widget-content ui-corner-all">
+                            <option value="">---</option>
+                            <?php  
+                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                        $query = "SELECT `Country_Code`,`Country_Name`,`Description` FROM `tsl_country`";
+                                        $result = $db_con->query($query);
+                                         while($row = $result->fetch_assoc()) {
+
+                                          echo "<option value='" . $row['Country_Code'] . "'> ". $row['Country_Name'] . " " . $row['Description']  ." </option>";                            
+
+                                         }    
+
+                                } 
+
+                            ?>   
+                        </select></td>
+                </tr>
+                <tr>
+                    <td><label for="omc_desc">DESCRIPTION</label></td>
+                    <td><textarea id="omc_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
                 </tr>
             </table>            
         </div>
@@ -157,6 +195,25 @@ $("#depot_entry_dailog").dialog({
     
 });    
 
+$("#omc_entry_dailog").dialog({
+   
+   autoOpen: false,
+    height: 350,
+    width: 400,
+    modal: true,
+    dialogClass: 'uititle',
+    
+    buttons: { 
+        "Create": function() {
+            
+        },
+        "Cancel": function(){
+           $(this).dialog("close");
+        }
+    }
+    
+});    
+
 $("#country_entry_button").click(function(){
    $( "#contry_entry_dailog" ).dialog( "open" );    
 });
@@ -167,6 +224,10 @@ $("#bdc_entry_button").click(function(){
 
 $("#depot_entry_button").click(function(){
    $( "#depot_entry_dailog" ).dialog( "open" );  
+});
+
+$("#omc_entry_button").click(function(){
+   $( "#omc_entry_dailog" ).dialog( "open" );  
 });
     
 </script>
