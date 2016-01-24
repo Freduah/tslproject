@@ -128,6 +128,63 @@
             </table>            
         </div>
         
+        <div id="transporter_entry_dailog" title="TRANSPORTER ENTRY">
+            <table>
+                <tr>
+                    <td><label for="transporter_code">TRANSPORTER CODE</label></td>
+                    <td><input type="text" id="transporter_code" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td><label for="transporter_name">TRANSPORTER NAME</label></td>
+                    <td><input type="text" id="transporter_name" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td><label for="transporter_ctr_code">COUNTRY</label></td>
+                    <td><select id="transporter_ctr_code" class="text ui-widget-content ui-corner-all">
+                            <option value="">---</option>
+                            <?php  
+                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                        $query = "SELECT `Country_Code`,`Country_Name`,`Description` FROM `tsl_country`";
+                                        $result = $db_con->query($query);
+                                         while($row = $result->fetch_assoc()) {
+
+                                          echo "<option value='" . $row['Country_Code'] . "'> ". $row['Country_Name'] . " " . $row['Description']  ." </option>";                            
+
+                                         }    
+
+                                } 
+
+                            ?>   
+                        </select></td>
+                </tr>
+                <tr>
+                    <td><label for="transporter_desc">DESCRIPTION</label></td>
+                    <td><textarea id="transporter_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
+                </tr>
+            </table>            
+        </div>
+        
+        <div id="product_entry_dailog" title="PRODUCT ENTRY">
+            <table>
+                <tr>
+                    <td><label for="product_code">PRODUCT CODE</label></td>
+                    <td><input type="text" id="product_code" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td><label for="product_name">PRODUCT NAME</label></td>
+                    <td><input type="text" id="product_name" class="text ui-widget-content ui-corner-all" /></td>
+                </tr>
+                <tr>
+                    <td><label for="product_desc">DESCRIPTION</label></td>
+                    <td><textarea id="product_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
+                </tr>
+            </table>            
+        </div>
+        
+        
+        
+        
         
     </div>
   </div>
@@ -214,6 +271,47 @@ $("#omc_entry_dailog").dialog({
     
 });    
 
+$("#transporter_entry_dailog").dialog({
+   
+   autoOpen: false,
+    height: 350,
+    width: 400,
+    modal: true,
+    dialogClass: 'uititle',
+    
+    buttons: { 
+        "Create": function() {
+            
+        },
+        "Cancel": function(){
+           $(this).dialog("close");
+        }
+    }
+    
+});    
+
+$("#product_entry_dailog").dialog({
+   
+   autoOpen: false,
+    height: 300,
+    width: 400,
+    modal: true,
+    dialogClass: 'uititle',
+    
+    buttons: { 
+        "Create": function() {
+            
+        },
+        "Cancel": function(){
+           $(this).dialog("close");
+        }
+    }
+    
+});  
+
+
+
+
 $("#country_entry_button").click(function(){
    $( "#contry_entry_dailog" ).dialog( "open" );    
 });
@@ -229,5 +327,15 @@ $("#depot_entry_button").click(function(){
 $("#omc_entry_button").click(function(){
    $( "#omc_entry_dailog" ).dialog( "open" );  
 });
+
+$("#transporter_entry_button").click(function(){
+   $( "#transporter_entry_dailog" ).dialog( "open" );  
+});
+
+$("#product_entry_button").click(function(){
+   $( "#product_entry_dailog" ).dialog( "open" );  
+});
+
+
     
 </script>
