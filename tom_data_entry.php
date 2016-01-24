@@ -47,6 +47,26 @@
                     <td><input type="text" id="bdc_name" class="text ui-widget-content ui-corner-all" /></td>
                 </tr>
                 <tr>
+                    <td><label for="bdc_ctr_code">COUNTRY</label></td>
+                    <td><select id="bdc_ctr_code" class="text ui-widget-content ui-corner-all">
+                            <option value="">---</option>
+                            <?php  
+                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                        $query = "SELECT `Country_Code`,`Country_Name`,`Description` FROM `tsl_country`";
+                                        $result = $db_con->query($query);
+                                         while($row = $result->fetch_assoc()) {
+
+                                          echo "<option value='" . $row['Country_Code'] . "'> ". $row['Country_Name'] . " " . $row['Description']  ." </option>";                            
+
+                                         }    
+
+                                } 
+
+                            ?>   
+                        </select></td>
+                </tr>
+                <tr>
                     <td><label for="bdc_desc">DESCRIPTION</label></td>
                     <td><textarea id="bdc_desc" cols="33" class="text ui-widget-content ui-corner-all"></textarea></td>
                 </tr>
@@ -217,7 +237,7 @@ $("#contry_entry_dailog").dialog({
 $("#bdc_entry_dailog").dialog({
    
    autoOpen: false,
-    height: 300,
+    height: 350,
     width: 400,
     modal: true,
     dialogClass: 'uititle',
