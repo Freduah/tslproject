@@ -226,6 +226,13 @@ $("#contry_entry_dailog").dialog({
     buttons: { 
         "Create": function() {
             
+           $.post("",
+           {
+               
+           }, function(data){
+             console.log(data);  
+           });
+            
         },
         "Cancel": function(){
            $(this).dialog("close");
@@ -355,7 +362,6 @@ $("#transporter_entry_button").click(function(){
 $("#product_entry_button").click(function(){
    $( "#product_entry_dailog" ).dialog( "open" );  
 });
-
 
     
 </script>
