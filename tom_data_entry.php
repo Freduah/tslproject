@@ -289,9 +289,15 @@ $("#depot_entry_dailog").dialog({
     buttons: { 
         "Create": function() {
             
+            var depot="DEPOT";
+            var depot_code = $("#depot_code").val();
+            var depot_name = $("#depot_name").val();
+            var depot_ctr = $("#depot_ctr_code").val();
+            var depot_description = $("#depot_desc").val();
+            
             $.post('tom_data_entry_post.php',
             {
-                
+              depot:depot, depotcode:depot_code, depotname:depot_name, depotctr:depot_ctr, depotdesc:depot_description  
             }, function(data){
                console.log(data); 
             });
