@@ -484,5 +484,16 @@ $("#product_entry_button").click(function(){
    $( "#product_entry_dailog" ).dialog( "open" );  
 });
 
+$( "#country_code" ).on('input', function(e){
+             
+       if (e.which >= 97 && e.which <= 122) {
+        var newKey = e.which - 32;
+        // I have tried setting those
+        e.keyCode = newKey;
+        e.charCode = newKey;
+        }
+       $("#country_code").val(($("#country_code").val()).toUpperCase());      
+   });
+
     
 </script>
