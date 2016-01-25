@@ -21,21 +21,21 @@
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
-                                   <th data-priority='2'>TRUCK NO</th>
-                                   <th data-priority='3'>CAPACITY</th>
-                                   <th data-priority='4'>PRODUCT</th>
-                                   <th data-priority='4'>WAYBILL NO</th>
-                                   <th data-priority='5'>Passed?</th>
+                                   <th data-priority='2' style='width: 20%;'>TRUCK NO</th>
+                                   <th data-priority='3' style='width: 25%;'>CAPACITY</th>
+                                   <th data-priority='4' style='width: 25%;'>PRODUCT</th>
+                                   <th data-priority='4' style='width: 20%;'>WAYBILL NO</th>
+                                   <th data-priority='5'>Safe</th>
                                  </tr>
                                </thead>
                                <tbody style='color:white;'>";
                                  while($row = $data_entry_result->fetch_assoc()) {
                                   echo " <tr> ";
                                   echo " <td>" . $row['ROWNUM'] . "</td>";
-                                  echo " <td style='width: 20%;'>" . $row['TRUCKNO'] . "</td>";
-                                  echo " <td style='width: 20%;'>" . $row['CAPACITY'] . "</td>";
-                                  echo " <td style='width: 20%;'>" . $row['PRODUCT'] . "</td>";
-                                  echo " <td style='width: 20%;'>" . $row['WAYBILL_NO'] . "</td>";
+                                  echo " <td style='width: 22%; text-align:center;'>" . $row['TRUCKNO'] . "</td>";
+                                  echo " <td style='width: 25%; text-align:center;'>" . $row['CAPACITY'] . "</td>";
+                                  echo " <td style='width: 25%; text-align:center;'>" . $row['PRODUCT'] . "</td>";
+                                  echo " <td style='width: 22%; text-align:center;'>" . $row['WAYBILL_NO'] . "</td>";
                                   echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
                                   echo " </tr> "; 
                                  }
