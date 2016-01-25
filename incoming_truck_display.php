@@ -24,7 +24,7 @@
                                 echo "<table id='tbl_incoming_pms' style='margin-left:auto; margin-right:auto; background-color:blue; color:white;'>
                                <thead>
                                  <tr>
-                                   <th data-priority='1'>NO</th>
+                                   <th data-priority='1'></th>
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
@@ -67,7 +67,7 @@
                                 echo "<table id='tbl_incoming_ago' style='margin-left:auto; margin-right:auto; background-color:yellow;'>
                                <thead>
                                  <tr>
-                                   <th data-priority='1'>NO</th>
+                                   <th data-priority='1'></th>
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
