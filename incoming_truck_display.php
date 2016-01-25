@@ -1,30 +1,33 @@
 <?php session_start();  ?>
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/inc/tslpd_header.php'; ?>
-<?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/nav/incoming_truck_display_nav.php'; ?>
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/nav/tom_watch_nav.php'; ?>
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/db/con_db.php'; ?>
 
 <div id="content-wrapper" class="clearfix row">
   <div class="content-full full-width twelve columns">
     <div id="content">	
-        
+       
         <div id="tom_watch_stats" class="clearfix row">
-            <div id="tom-watch-data-display-incoming-trucks">
-                    <?php 
+            
+            <table>
+                <tr>
+                    <td>
+                        <div id="incoming-display-pms">                                                       
+                            <?php 
                                 $entry_date = date('Y-m-d H:i:s');
-                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, t.WAYBILL_NO, "
+                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, "
                                          . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
                                          . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$entry_date') ORDER BY t.ENTRYDATE DESC LIMIT 15";
 
                             $data_entry_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_entry_watch' style='margin-left:auto; margin-right:auto;'>
+                                echo "<table id='tbl_data_entry_watch' style='margin-left:auto; margin-right:auto;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
-                                   <th data-priority='2' style='width: 20%;'>TRUCK NO</th>
-                                   <th data-priority='3' style='width: 25%;'>CAPACITY</th>
-                                   <th data-priority='4' style='width: 25%;'>PRODUCT</th>
-                                   <th data-priority='4' style='width: 20%;'>WAYBILL NO</th>
+                                   <th data-priority='2'>TRUCK NO</th>
+                                   <th data-priority='3'>CAPACITY</th>
+                                   <th data-priority='4'>PRODUCT</th>
                                    <th data-priority='5'>Safe</th>
                                  </tr>
                                </thead>
@@ -32,10 +35,9 @@
                                  while($row = $data_entry_result->fetch_assoc()) {
                                   echo " <tr> ";
                                   echo " <td>" . $row['ROWNUM'] . "</td>";
-                                  echo " <td style='width: 22%; text-align:center;'>" . $row['TRUCKNO'] . "</td>";
-                                  echo " <td style='width: 25%; text-align:center;'>" . $row['CAPACITY'] . "</td>";
-                                  echo " <td style='width: 25%; text-align:center;'>" . $row['PRODUCT'] . "</td>";
-                                  echo " <td style='width: 22%; text-align:center;'>" . $row['WAYBILL_NO'] . "</td>";
+                                  echo " <td>" . $row['TRUCKNO'] . "</td>";
+                                  echo " <td>" . $row['CAPACITY'] . "</td>";
+                                  echo " <td>" . $row['PRODUCT'] . "</td>";
                                   echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
                                   echo " </tr> "; 
                                  }
@@ -43,8 +45,58 @@
                                 echo "</tbody>
                               </table>";                                                        
                                // $db_con->close(); 
-                             ?>                      
-            </div>           
+                             ?>
+                        </div>                        
+                    </td>
+                    
+                    <td>
+                      <div id="incoming-display-ago">                          
+                            <?php 
+                             $safety_date = date('Y-m-d H:i:s');
+                             $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.CAPACITY, "
+                                      . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
+                                      . "(SELECT @i:=0) AS foo WHERE DATE(t.PASSEDSAFETYDATE)=DATE('$safety_date') ORDER BY t.PASSEDSAFETYDATE DESC LIMIT 15";
+
+                            $safety_result = $db_con->query($query);
+
+                                echo "<table id='tbl_safety_watch' style='margin-left:auto; margin-right:auto;'>
+                               <thead>
+                                 <tr>
+                                   <th data-priority='1'>NO</th>
+                                   <th data-priority='2'>TRUCK NO</th>
+                                   <th data-priority='3'>CAPACITY</th>
+                                   <th data-priority='4'>PRODUCT</th>
+                                   <th data-priority='5'>Safe</th>
+                                 </tr>
+                               </thead>
+                               <tbody style='color:white;'>";
+                                 while($row = $safety_result->fetch_assoc()) {
+                                  echo " <tr> ";
+                                  echo " <td>" . $row['ROWNUM'] . "</td>";
+                                  echo " <td>" . $row['TRUCKNO'] . "</td>";
+                                  echo " <td>" . $row['CAPACITY'] . "</td>";
+                                  echo " <td>" . $row['PRODUCT'] . "</td>";
+                                  echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
+                                  echo " </tr> "; 
+                                 }
+
+                                echo "</tbody>
+                              </table>";                                            
+                
+                                //$db_con->close(); 
+                             ?>
+                      </div>                     
+                        
+                    </td>                   
+                </tr>                
+            </table>
+            
+             
+            
+            
+            
+             
+            
         </div>       
         
     </div>
@@ -55,15 +107,21 @@
 
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/inc/tslpd_footer.php'; ?>
 
-  
 
 <script>
 
 $(document).ready(function(){
+    
+  setInterval(function(){
+    location.reload();
+  },10000);
   
-  $("#tbl_incoming_entry_watch td").each(function () {
-       	var passed = $(this).closest('tr').find('td:eq(6)').text();
-		
+  
+$("#tbl_data_entry_watch td").each(function () {
+
+	var passed = $(this).closest('tr').find('td:eq(4)').text();
+	
+	
 	if (passed === 'Y') {
           $(this).css('background-color', 'green');
 	} else if (passed === 'N') {
@@ -73,12 +131,32 @@ $(document).ready(function(){
           $(this).css('background-color', 'yellow'); 
           $(this).css('color', 'black');  
 	}
-  });  
-    
-    
 });
 
 
+$("#tbl_safety_watch td").each(function () {
 
+	var passed = $(this).closest('tr').find('td:eq(4)').text();
+	
+	
+	if (passed === 'Y') {
+          $(this).css('background-color', 'green');
+	} else if (passed === 'N') {
+          $(this).css('background-color', 'red');  
+	}
+});
+
+$("#tbl_invoice_watch td").each(function () {
+
+	var truck = $(this).closest('tr').find('td:eq(2)').text();
+	
+	
+	if (truck !== '') {
+          $(this).css('background-color', 'blue');
+          $(this).css('color', 'white');
+	} 
+});
+   
+});
 
 </script>
