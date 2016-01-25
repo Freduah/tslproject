@@ -240,7 +240,7 @@ $("#contry_entry_dailog").dialog({
                   $("#country_code").val('');
                   $("#country_name").val('');
                   $("#country_desc").val('');
-                  $(this).dialog("close");
+                  location.reload();
               } else if (result === '-1'){
                   alert('Invalid data');
               }
@@ -282,11 +282,10 @@ $("#bdc_entry_dailog").dialog({
                     $("#bdc_name").val('');
                     $("#bdc_ctr_code").val('');
                     $("#bdc_desc").val('');
-                    $(this).dialog("close");
+                    location.reload();
                 } else if (result === '-1'){
                     alert('Invalid data');
                 }
-                console.log(data);
             });
             
         },
@@ -325,11 +324,10 @@ $("#depot_entry_dailog").dialog({
                     $("#depot_name").val('');
                     $("#depot_ctr_code").val('');
                     $("#depot_desc").val('');
-                    $(this).dialog("close");
+                    location.reload();
                 } else if (result === '-1'){
                     alert('Invalid data');
                 }
-               console.log(data); 
             });
         },
         "Cancel": function(){
@@ -366,11 +364,10 @@ $("#omc_entry_dailog").dialog({
                   $("#omc_name").val('');
                   $("#omc_ctr_code").val('');
                   $("#omc_desc").val('');
-                  $(this).dialog("close");
+                  location.reload();
               } else if (result === '-1'){
                   alert('Invalid data');
               }
-            console.log(data); 
          });
          
         },
@@ -409,11 +406,10 @@ $("#transporter_entry_dailog").dialog({
                   $("#transporter_name").val('');
                   $("#transporter_ctr_code").val('');
                   $("#transporter_desc").val('');
-                  $(this).dialog("close");
+                  location.reload();
               } else if (result === '-1'){
                   alert('Invalid data');
               }
-             console.log(data); 
           });
           
         },
@@ -450,11 +446,10 @@ $("#product_entry_dailog").dialog({
                   $("#product_code").val('');
                   $("#product_name").val('');
                   $("#product_desc").val('');
-                  $(this).dialog("close");
+                  location.reload();
               } else if (result === '-1'){
                   alert('Invalid data');
               }
-             console.log(data); 
           });          
         },
         "Cancel": function(){
