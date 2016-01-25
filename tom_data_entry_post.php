@@ -60,7 +60,46 @@ if(isset($_POST['ctr'])){
         }
        $db_con->close();
    
+} else if(isset ($_POST['omc'])) {
+    $omc_code = mysqli_real_escape_string($db_con, $_POST['omccode']);
+    $omc_name = mysqli_real_escape_string($db_con, $_POST['omcname']);
+    $omc_ctr = mysqli_real_escape_string($db_con, $_POST['omcctr']);
+    $omc_desc = mysqli_real_escape_string($db_con, $_POST['omcdesc']);
+    
+    $user_name = $_SESSION['login_user_name'];
+    $query = "INSERT INTO `tsl_omc_type`(`OMC_CODE`, `OMC_NAME`, `COUNTRY_CODE`, `Description`, `CreatedBy`) "
+            . "VALUES ('$omc_code','$omc_name','$omc_ctr','$omc_desc','$user_name')";
+    
+    if ($db_con->query($query) === TRUE) 
+        {
+          echo $data = 'New record successfully saved.';                               
+        } else {
+          echo $data = 'error';
+        }
+       $db_con->close();
+  
+} else if(isset ($_POST['trans'])){
+    
+    $trans_code = mysqli_real_escape_string($db_con, $_POST['transcode']);
+    $trans_name = mysqli_real_escape_string($db_con, $_POST['transname']);
+    $trans_ctr = mysqli_real_escape_string($db_con, $_POST['transctr']);
+    $trans_description = mysqli_real_escape_string($db_con, $_POST['transdesc']);
+    
+    $user_name = $_SESSION['login_user_name'];
+    $query = "INSERT INTO `tsl_transporter`(`TRANPORTER_CODE`, `TRANSPORTER_NAME`, `COUNTRY_CODE`, `Description`, `CreatedBy`) "
+            . "VALUES ('$trans_code','$trans_name','$trans_ctr','$trans_description','$user_name')";
+    
+    if ($db_con->query($query) === TRUE) 
+        {
+          echo $data = 'New record successfully saved.';                               
+        } else {
+          echo $data = 'error';
+        }
+       $db_con->close();
+    
 }
+
+
 
 
     
