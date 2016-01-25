@@ -1,6 +1,5 @@
 <?php session_start();  ?>
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/inc/tslpd_header.php'; ?>
-<?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/nav/incoming_truck_display_nav.php'; ?>
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/db/con_db.php'; ?>
 
 <div id="content-wrapper" class="clearfix row">
@@ -22,7 +21,7 @@
 
                             $data_entry_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_pms' style='margin-left:auto; margin-right:auto; background-color:blue;'>
+                                echo "<table id='tbl_incoming_pms' style='margin-left:auto; margin-right:auto; background-color:blue; color:white;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
@@ -61,7 +60,7 @@
 
                             $safety_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_ago' style='margin-left:auto; margin-right:auto; background-color:yello; color:white;'>
+                                echo "<table id='tbl_incoming_ago' style='margin-left:auto; margin-right:auto; background-color:yellow;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
