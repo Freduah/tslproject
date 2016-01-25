@@ -1,6 +1,6 @@
 <?php session_start();  ?>
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/inc/tslpd_header.php'; ?>
-<?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/nav/tom_watch_nav.php'; ?>
+<?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/nav/incoming_truck_display_nav.php'; ?>
 <?php require_once $_SERVER["DOCUMENT_ROOT"] . 'tslpd/db/con_db.php'; ?>
 
 <div id="content-wrapper" class="clearfix row">
@@ -9,7 +9,7 @@
        
         <div id="tom_watch_stats" class="clearfix row">
             
-            <table>
+            <table style="width: 94%; font-size: large;">
                 <tr>
                     <td>
                         <div id="incoming-display-pms">                                                       
@@ -17,18 +17,19 @@
                                 $entry_date = date('Y-m-d H:i:s');
                                 $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, "
                                          . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
-                                         . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$entry_date') ORDER BY t.ENTRYDATE DESC LIMIT 15";
+                                         . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$entry_date') "
+                                         . " AND t.PRODUCT = 'PMS' ORDER BY t.ENTRYDATE DESC LIMIT 10";
 
                             $data_entry_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_pms' style='width:50%; margin-left:auto; margin-right:auto;'>
+                                echo "<table id='tbl_incoming_pms' style='margin-left:auto; margin-right:auto; background-color:red;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
-                                   <th data-priority='5'>Safe</th>
+                                   <th data-priority='5'>SAFE</th>
                                  </tr>
                                </thead>
                                <tbody style='color:white;'>";
@@ -55,18 +56,19 @@
                              $safety_date = date('Y-m-d H:i:s');
                              $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.CAPACITY, "
                                       . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
-                                      . "(SELECT @i:=0) AS foo WHERE DATE(t.PASSEDSAFETYDATE)=DATE('$safety_date') ORDER BY t.PASSEDSAFETYDATE DESC LIMIT 15";
+                                      . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$safety_date') "
+                                      . " AND t.PRODUCT='AGO' ORDER BY t.ENTRYDATE DESC LIMIT 10";
 
                             $safety_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_ago' style='width:50%; margin-left:auto; margin-right:auto;'>
+                                echo "<table id='tbl_incoming_ago' style='margin-left:auto; margin-right:auto; background-color:blue; color:white;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
-                                   <th data-priority='5'>Safe</th>
+                                   <th data-priority='5'>SAFE</th>
                                  </tr>
                                </thead>
                                <tbody style='color:white;'>";
@@ -143,6 +145,10 @@ $("#tbl_incoming_ago td").each(function () {
           $(this).css('background-color', 'green');
 	} else if (passed === 'N') {
           $(this).css('background-color', 'red');  
+	}
+         else if (passed === '') {
+          $(this).css('background-color', 'yellow'); 
+          $(this).css('color', 'black');  
 	}
 });
 
