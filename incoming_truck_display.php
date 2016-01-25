@@ -21,7 +21,7 @@
 
                             $data_entry_result = $db_con->query($query);
 
-                                echo "<table id='tbl_data_entry_watch' style='margin-left:auto; margin-right:auto;'>
+                                echo "<table id='tbl_incoming_pms' style='width:50%; margin-left:auto; margin-right:auto;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
@@ -59,7 +59,7 @@
 
                             $safety_result = $db_con->query($query);
 
-                                echo "<table id='tbl_safety_watch' style='margin-left:auto; margin-right:auto;'>
+                                echo "<table id='tbl_incoming_ago' style='width:50%; margin-left:auto; margin-right:auto;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
@@ -117,7 +117,7 @@ $(document).ready(function(){
   },10000);
   
   
-$("#tbl_data_entry_watch td").each(function () {
+$("#tbl_incoming_pms td").each(function () {
 
 	var passed = $(this).closest('tr').find('td:eq(4)').text();
 	
@@ -134,7 +134,7 @@ $("#tbl_data_entry_watch td").each(function () {
 });
 
 
-$("#tbl_safety_watch td").each(function () {
+$("#tbl_incoming_ago td").each(function () {
 
 	var passed = $(this).closest('tr').find('td:eq(4)').text();
 	
@@ -146,17 +146,6 @@ $("#tbl_safety_watch td").each(function () {
 	}
 });
 
-$("#tbl_invoice_watch td").each(function () {
-
-	var truck = $(this).closest('tr').find('td:eq(2)').text();
-	
-	
-	if (truck !== '') {
-          $(this).css('background-color', 'blue');
-          $(this).css('color', 'white');
-	} 
-});
-   
 });
 
 </script>
