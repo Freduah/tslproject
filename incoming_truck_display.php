@@ -33,7 +33,7 @@
                                    <th data-priority='7'>SAFE</th>
                                  </tr>
                                </thead>
-                               <tbody style='color:white;'>";
+                               <tbody style='color:black;'>";
                                  while($row = $data_entry_result->fetch_assoc()) {
                                   echo " <tr> ";
                                   echo " <td>" . $row['ROWNUM'] . "</td>";
@@ -76,7 +76,7 @@
                                    <th data-priority='7'>SAFE</th>
                                  </tr>
                                </thead>
-                               <tbody style='color:white;'>";
+                               <tbody style='color:black;'>";
                                  while($row = $safety_result->fetch_assoc()) {
                                   echo " <tr> ";
                                   echo " <td>" . $row['ROWNUM'] . "</td>";
@@ -133,9 +133,9 @@ $("#tbl_incoming_pms td").each(function () {
 	console.log("Has pass safety :" + issafe);
 	
 	if (issafe === 'Y') {
-          $(this).css('background-color', '#3EB249');
+          $(this).css('background-color', 'lightgreen');
 	} else if (issafe === 'N') {
-          $(this).css('background-color', '#737272');  
+          $(this).css('background-color', 'lightgrey');  
 	} else if (issafe === '') {
           $(this).css('background-color', '#d9534f');  
 	}
@@ -151,9 +151,9 @@ $("#tbl_incoming_ago td").each(function () {
 	
 	
 	if (passed === 'Y') {
-          $(this).css('background-color', '#3EB249');
+          $(this).css('background-color', 'lightgreen');
 	} else if (passed === 'N') {
-          $(this).css('background-color', '#737272');  
+          $(this).css('background-color', 'lightgrey');  
 	} else if (passed === '') {
           $(this).css('background-color', '#d9534f');  
 	}
