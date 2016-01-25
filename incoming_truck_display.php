@@ -28,9 +28,9 @@
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
-                                   <th data-priority='4'>BDC</th>
-                                   <th data-priority='4'>TIME</th>
-                                   <th data-priority='5'>SAFE</th>
+                                   <th data-priority='5'>BDC</th>
+                                   <th data-priority='6'>TIME</th>
+                                   <th data-priority='7'>SAFE</th>
                                  </tr>
                                </thead>
                                <tbody style='color:white;'>";
@@ -71,9 +71,9 @@
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
-                                   <th data-priority='4'>BDC</th>
-                                   <th data-priority='4'>TIME</th>
-                                   <th data-priority='5'>SAFE</th>
+                                   <th data-priority='5'>BDC</th>
+                                   <th data-priority='6'>TIME</th>
+                                   <th data-priority='7'>SAFE</th>
                                  </tr>
                                </thead>
                                <tbody style='color:white;'>";
@@ -129,14 +129,14 @@ $('#tbl_incoming_pms th:nth-child(7)').hide();
 $('#tbl_incoming_pms td:nth-child(7)').hide();  
 $("#tbl_incoming_pms td").each(function () {
 
-	var passed = $(this).closest('tr').find('td:eq(7)').text();
+	var issafe = $(this).closest('tr').find('td:eq(6)').text();
+	console.log("Has pass safety :" + issafe);
 	
-	
-	if (passed === 'Y') {
+	if (issafe === 'Y') {
           $(this).css('background-color', '#3EB249');
-	} else if (passed === 'N') {
+	} else if (issafe === 'N') {
           $(this).css('background-color', '#737272');  
-	} else if (passed === ' ') {
+	} else if (issafe === '') {
           $(this).css('background-color', '#d9534f');  
 	}
 });
@@ -147,7 +147,7 @@ $('#tbl_incoming_ago th:nth-child(7)').hide();
 $('#tbl_incoming_ago td:nth-child(7)').hide(); 
 $("#tbl_incoming_ago td").each(function () {
 
-	var passed = $(this).closest('tr').find('td:eq(7)').text();
+	var passed = $(this).closest('tr').find('td:eq(6)').text();
 	
 	
 	if (passed === 'Y') {
