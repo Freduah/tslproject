@@ -14,7 +14,7 @@
                         <div id="incoming-display-pms">                                                       
                             <?php 
                                 $entry_date = date('Y-m-d H:i:s');
-                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, "
+                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, t.BDC, "
                                          . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
                                          . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$entry_date') "
                                          . " AND t.PRODUCT = 'PMS' ORDER BY t.ENTRYDATE DESC LIMIT 10";
@@ -28,6 +28,8 @@
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
+                                   <th data-priority='4'>BDC</th>
+                                   <th data-priority='4'>TIME</th>
                                    <th data-priority='5'>SAFE</th>
                                  </tr>
                                </thead>
@@ -67,6 +69,8 @@
                                    <th data-priority='2'>TRUCK NO</th>
                                    <th data-priority='3'>CAPACITY</th>
                                    <th data-priority='4'>PRODUCT</th>
+                                   <th data-priority='4'>BDC</th>
+                                   <th data-priority='4'>TIME</th>
                                    <th data-priority='5'>SAFE</th>
                                  </tr>
                                </thead>
@@ -129,7 +133,7 @@ $("#tbl_incoming_pms td").each(function () {
           $(this).css('background-color', 'red');  
 	}
          else if (passed === '') {
-          $(this).css('background-color', 'red'); 
+          $(this).css('background-color', '#d9534f'); 
           $(this).css('color', 'black');  
 	}
 });
@@ -146,7 +150,7 @@ $("#tbl_incoming_ago td").each(function () {
           $(this).css('background-color', 'red');  
 	}
          else if (passed === '') {
-          $(this).css('background-color', 'red'); 
+          $(this).css('background-color', '#d9534f'); 
           $(this).css('color', 'black');  
 	}
 });
