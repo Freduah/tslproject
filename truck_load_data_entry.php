@@ -904,7 +904,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         $usno = mysqli_real_escape_string($db_con, $_POST['usno']);
         $genbarcode = mysqli_real_escape_string($db_con, $_POST['genbarcode']);
         $genbarcodedate = date('Y-m-d H:i:s');
-        $entry_date = date("Y-m-d");
+        $entry_date = date('Y-m-d H:i:s');
         
         $entry_type = mysqli_real_escape_string($db_con, $_POST['entrytype']);
         $waybillnumber = mysqli_real_escape_string($db_con, $_POST['waybillnumber']);
