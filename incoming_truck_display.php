@@ -136,10 +136,8 @@ $("#tbl_incoming_pms td").each(function () {
           $(this).css('background-color', '#3EB249');
 	} else if (passed === 'N') {
           $(this).css('background-color', '#737272');  
-	}
-         else if (passed === '') {
-          $(this).css('background-color', '#d9534f'); 
-          $(this).css('color', 'black');  
+	} else if (passed === ' ') {
+          $(this).css('background-color', '#d9534f');  
 	}
 });
 
@@ -156,10 +154,8 @@ $("#tbl_incoming_ago td").each(function () {
           $(this).css('background-color', '#3EB249');
 	} else if (passed === 'N') {
           $(this).css('background-color', '#737272');  
-	}
-         else if (passed === '') {
-          $(this).css('background-color', '#d9534f'); 
-          $(this).css('color', 'black');  
+	} else if (passed === '') {
+          $(this).css('background-color', '#d9534f');  
 	}
 });
 
