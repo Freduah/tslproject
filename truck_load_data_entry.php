@@ -232,11 +232,7 @@
                                                 </select></td></tr>
                                             <tr>
                                                 <td><label for="add_omc_destination">OMC DESTINATION</label></td>
-                                                <td><input type="text" id="add_omc_destination" class="text ui-widget-content ui-corner-all"></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label for="">TRUCK ENTRY DATE</label></td>
-                                                <td><input type="text" id="add_truck_entry_date" class="text ui-widget-content ui-corner-all"</td>
+                                                <td><textarea id="add_omc_destination" cols="35" class="text ui-widget-content ui-corner-all"></textarea></td>
                                             </tr>
                                         </table>
                                     </fieldset>                          
@@ -458,7 +454,7 @@ $(function(){
             var capacity = $( "#add_truck_capacity" ).val();
             var product = $( "#add_truck_product" ).val();
             var bdc = $( "#add_truck_bdc" ).val();
-            var entry_date = $( "#add_truck_entry_date" ).val();
+            //var entry_date = $( "#add_truck_entry_date" ).val();
             
             var entry_type = $( "#add_entry_type" ).val(); 
             var omc_type = $( "#add_omc_type" ).val();
@@ -499,10 +495,6 @@ $(function(){
                 $( "#lbl_truck_entry_and_load_alert" ).html("BDC can not be empty.");
                 $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
                 valid = false;
-            } else if (entry_date === ''){
-                $( "#lbl_truck_entry_and_load_alert" ).html("ENTRY DATE can not be empty.");
-                $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
-                valid = false;
             } else if (genbar_code === ''){
                 $( "#lbl_truck_entry_and_load_alert" ).html("BARCODE can not be empty.");
                 $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
@@ -514,7 +506,7 @@ $(function(){
                 $.post("truck_load_data_entry.php", 
                 {
                   truckno:truck_no, transporter:transporter, driver:driver, capacity:capacity, product:product, 
-                  bdc:bdc, entry_date:entry_date, usno:unique_serial_no, genbarcode:genbar_code,
+                  bdc:bdc, usno:unique_serial_no, genbarcode:genbar_code,
                   entrytype:entry_type,omctype:omc_type,omcdestination:omc_destination,depotliftedto:depot_lifted_to,
                   countryliftedto:country_lifted_to,depotliftedfrom:depot_lifted_from,countryliftedfrom:country_lifted_from,
                   waybillnumber:truck_waybill_number,collectionordernumber:truck_collection_order_number  
@@ -522,7 +514,7 @@ $(function(){
                 function( ){
 
                     console.log(truck_no + ' ' + transporter + ' ' + driver + ' ' + capacity + ' ' + product
-                            + ' ' + bdc + ' ' + entry_date + ' ' + unique_serial_no + ' ' + genbar_code);
+                            + ' ' + bdc + ' ' + ' ' + unique_serial_no + ' ' + genbar_code);
                     location.reload();
                 });       
             }
@@ -535,12 +527,7 @@ $(function(){
             }
         }      
    });
-    
-    
-   $( "#add_truck_entry_date" ).datepicker({
-        dateFormat: "yy-mm-dd"
-   }); 
-   
+       
    function generateUUID(){
     /*var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -573,7 +560,6 @@ $(function(){
       var capacity = $( "#add_truck_capacity" ).val();
       var product = $( "#add_truck_product" ).val();
       var bdc = $( "#add_truck_bdc" ).val();
-      var entry_date = $( "#add_truck_entry_date" ).val();
       
       var entry_type = $( "#add_entry_type" ).val(); 
       var omc_type = $( "#add_omc_type" ).val();
@@ -614,10 +600,6 @@ $(function(){
           $( "#lbl_truck_entry_and_load_alert" ).html("BDC can not be empty.");
           $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
           valid = false;
-      } else if (entry_date === ''){
-          $( "#lbl_truck_entry_and_load_alert" ).html("ENTRY DATE can not be empty.");
-          $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
-          valid = false;
       } else if (genbar_code === ''){
           $( "#lbl_truck_entry_and_load_alert" ).html("BARCODE can not be empty.");
           $( "#lbl_truck_entry_and_load_alert" ).css('color','red');
@@ -629,7 +611,7 @@ $(function(){
           $.post("truck_load_data_entry.php", 
           {
             truckno:truck_no, transporter:transporter, driver:driver, capacity:capacity, product:product, 
-            bdc:bdc, entry_date:entry_date, usno:unique_serial_no, genbarcode:genbar_code,
+            bdc:bdc, usno:unique_serial_no, genbarcode:genbar_code,
             entrytype:entry_type,omctype:omc_type,omcdestination:omc_destination,depotliftedto:depot_lifted_to,
             countryliftedto:country_lifted_to,depotliftedfrom:depot_lifted_from,countryliftedfrom:country_lifted_from,
             waybillnumber:truck_waybill_number,collectionordernumber:truck_collection_order_number            
@@ -637,7 +619,7 @@ $(function(){
           function( ){
               
               console.log(truck_no + ' ' + transporter + ' ' + driver + ' ' + capacity + ' ' + product
-                      + ' ' + bdc + ' ' + entry_date + ' ' + unique_serial_no + ' ' + genbar_code);
+                      + ' ' + bdc + ' ' + ' ' + unique_serial_no + ' ' + genbar_code);
                
                 /* $( "#barcode_gen").barcode(
                        '*'+unique_serial_no+truck_no+'*',
@@ -911,7 +893,7 @@ $( "#edit_serial_number" ).on('input', function(){
 if($_SERVER['REQUEST_METHOD'] === "POST"){
     
     if(!empty($_POST['truckno']) && !empty($_POST['transporter']) && !empty($_POST['driver'])  && !empty($_POST['capacity']) &&  
-       !empty($_POST['product']) &&  !empty($_POST['bdc']) && !empty($_POST['entry_date']) ){
+       !empty($_POST['product']) &&  !empty($_POST['bdc']) ){
         
         $truckno = mysqli_real_escape_string($db_con, $_POST['truckno']);
         $transporter = mysqli_real_escape_string($db_con, $_POST['transporter']);
@@ -919,7 +901,6 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
         $capacity = mysqli_real_escape_string($db_con, $_POST['capacity']);
         $product = mysqli_real_escape_string($db_con, $_POST['product']);
         $bdc = mysqli_real_escape_string($db_con, $_POST['bdc']);
-        $entrydate = mysqli_real_escape_string($db_con, $_POST['entry_date']); 
         $usno = mysqli_real_escape_string($db_con, $_POST['usno']);
         $genbarcode = mysqli_real_escape_string($db_con, $_POST['genbarcode']);
         $genbarcodedate = date('Y-m-d H:i:s');
