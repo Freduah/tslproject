@@ -237,6 +237,9 @@ $("#contry_entry_dailog").dialog({
               result = $.parseJSON(data);
               if(result === '1'){
                   alert('Data successfully saved.');
+                  $("#country_code").val('');
+                  $("#country_name").val('');
+                  $("#country_desc").val('');
                   $(this).dialog("close");
               } else if (result === '-1'){
                   alert('Invalid data');
@@ -275,6 +278,10 @@ $("#bdc_entry_dailog").dialog({
                 result = $.parseJSON(data);
                 if(result === '1'){
                     alert('Data successfully saved.');
+                    $("#bdc_code").val('');
+                    $("#bdc_name").val('');
+                    $("#bdc_ctr_code").val('');
+                    $("#bdc_desc").val('');
                     $(this).dialog("close");
                 } else if (result === '-1'){
                     alert('Invalid data');
@@ -314,6 +321,10 @@ $("#depot_entry_dailog").dialog({
                 result = $.parseJSON(data);
                 if(result === '1'){
                     alert('Data successfully saved.');
+                    $("#depot_code").val('');
+                    $("#depot_name").val('');
+                    $("#depot_ctr_code").val('');
+                    $("#depot_desc").val('');
                     $(this).dialog("close");
                 } else if (result === '-1'){
                     alert('Invalid data');
@@ -351,6 +362,10 @@ $("#omc_entry_dailog").dialog({
              result = $.parseJSON(data);
               if(result === '1'){
                   alert('Data successfully saved.');
+                  $("#omc_code").val('');
+                  $("#omc_name").val('');
+                  $("#omc_ctr_code").val('');
+                  $("#omc_desc").val('');
                   $(this).dialog("close");
               } else if (result === '-1'){
                   alert('Invalid data');
@@ -390,6 +405,10 @@ $("#transporter_entry_dailog").dialog({
               result = $.parseJSON(data);
               if(result === '1'){
                   alert('Data successfully saved.');
+                  $("#transporter_code").val('');
+                  $("#transporter_name").val('');
+                  $("#transporter_ctr_code").val('');
+                  $("#transporter_desc").val('');
                   $(this).dialog("close");
               } else if (result === '-1'){
                   alert('Invalid data');
@@ -428,6 +447,9 @@ $("#product_entry_dailog").dialog({
               result = $.parseJSON(data);
               if(result === '1'){
                   alert('Data successfully saved.');
+                  $("#product_code").val('');
+                  $("#product_name").val('');
+                  $("#product_desc").val('');
                   $(this).dialog("close");
               } else if (result === '-1'){
                   alert('Invalid data');
