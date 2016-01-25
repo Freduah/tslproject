@@ -77,11 +77,11 @@
             <table>
                 <tr>
                     <td><label for="depot_code">DEPOT CODE</label></td>
-                    <td><input type="text" id="bdc_code" class="text ui-widget-content ui-corner-all" /></td>
+                    <td><input type="text" id="depot_code" class="text ui-widget-content ui-corner-all" /></td>
                 </tr>
                 <tr>
                     <td><label for="depot_name">DEPOT NAME</label></td>
-                    <td><input type="text" id="bdc_name" class="text ui-widget-content ui-corner-all" /></td>
+                    <td><input type="text" id="depot_name" class="text ui-widget-content ui-corner-all" /></td>
                 </tr>
                 <tr>
                     <td><label for="depot_ctr_code">COUNTRY</label></td>
@@ -230,11 +230,12 @@ $("#contry_entry_dailog").dialog({
             var country_name = $("#country_name").val();
             var country_description = $("#country_desc").val();
             
-           $.post("tom_data_entry_post.php",
+           $.post('tom_data_entry_post.php',
            {
               ctr:country, ctr_code:country_code, ctr_name:country_name, ctr_description:country_description 
            }, function(data){
-             console.log(data);  
+             console.log(data); 
+              $(this).dialog("close");
            });
             
         },
@@ -256,6 +257,19 @@ $("#bdc_entry_dailog").dialog({
     buttons: { 
         "Create": function() {
             
+            var bdc = "BDC";
+            var bdc_code = $("#bdc_code").val();
+            var bdc_name = $("#bdc_name").val();
+            var bdc_ctr = $("#bdc_ctr_code").val();
+            var bdc_description = $("#bdc_desc").val();
+            
+            $.post('tom_data_entry_post.php', 
+            {
+               bdc:bdc, dbccode:bdc_code, bdcname:bdc_name, bdcctr:bdc_ctr, bdcdesc:bdc_description 
+            }, function(data){
+                console.log(data);
+            });
+            
         },
         "Cancel": function(){
            $(this).dialog("close");
@@ -275,6 +289,12 @@ $("#depot_entry_dailog").dialog({
     buttons: { 
         "Create": function() {
             
+            $.post('tom_data_entry_post.php',
+            {
+                
+            }, function(data){
+               console.log(data); 
+            });
         },
         "Cancel": function(){
            $(this).dialog("close");
