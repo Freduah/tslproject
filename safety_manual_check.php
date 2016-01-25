@@ -22,7 +22,7 @@
 
              $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.TRANSPORTER,t.DRIVERNAME,t.CAPACITY, "
                      . "t.PRODUCT, t.GENBARCODE, t.BDC,t.ENTRYDATE, t.HASPASSEDSAFETY  FROM tsl_truck_load AS t, "
-                     . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$curr_date') ORDER BY t.SNO DESC LIMIT 15";
+                     . "(SELECT @i:=0) AS foo WHERE t.HASPASSEDSAFETY !='Y' AND DATE(t.ENTRYDATE)=DATE('$curr_date') ORDER BY t.SNO DESC LIMIT 15";
 
              $result = $db_con->query($query);
 
