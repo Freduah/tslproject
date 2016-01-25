@@ -8,7 +8,7 @@
        
         <div id="tom_watch_stats" class="clearfix row">
             
-            <table style="width: 94%; font-size: larger ;">
+            <table style="width: 94%; font-size: large ;">
                 <tr>
                     <td>
                         <div id="incoming-display-pms">                                                       
@@ -124,17 +124,18 @@ $(document).ready(function(){
   setInterval(function(){
     location.reload();
   },10000);
-  
-  
+
+$('#tbl_incoming_pms th:nth-child(7)').hide();
+$('#tbl_incoming_pms td:nth-child(7)').hide();  
 $("#tbl_incoming_pms td").each(function () {
 
 	var passed = $(this).closest('tr').find('td:eq(7)').text();
 	
 	
 	if (passed === 'Y') {
-          $(this).css('background-color', 'green');
+          $(this).css('background-color', '#3EB249');
 	} else if (passed === 'N') {
-          $(this).css('background-color', 'red');  
+          $(this).css('background-color', '#737272');  
 	}
          else if (passed === '') {
           $(this).css('background-color', '#d9534f'); 
@@ -143,15 +144,18 @@ $("#tbl_incoming_pms td").each(function () {
 });
 
 
+
+$('#tbl_incoming_ago th:nth-child(7)').hide();
+$('#tbl_incoming_ago td:nth-child(7)').hide(); 
 $("#tbl_incoming_ago td").each(function () {
 
 	var passed = $(this).closest('tr').find('td:eq(7)').text();
 	
 	
 	if (passed === 'Y') {
-          $(this).css('background-color', 'green');
+          $(this).css('background-color', '#3EB249');
 	} else if (passed === 'N') {
-          $(this).css('background-color', 'red');  
+          $(this).css('background-color', '#737272');  
 	}
          else if (passed === '') {
           $(this).css('background-color', '#d9534f'); 
