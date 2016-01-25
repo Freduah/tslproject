@@ -22,7 +22,7 @@
 
                             $data_entry_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_pms' style='margin-left:auto; margin-right:auto; background-color:red;'>
+                                echo "<table id='tbl_incoming_pms' style='margin-left:auto; margin-right:auto; background-color:blue;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
@@ -61,7 +61,7 @@
 
                             $safety_result = $db_con->query($query);
 
-                                echo "<table id='tbl_incoming_ago' style='margin-left:auto; margin-right:auto; background-color:blue; color:white;'>
+                                echo "<table id='tbl_incoming_ago' style='margin-left:auto; margin-right:auto; background-color:yello; color:white;'>
                                <thead>
                                  <tr>
                                    <th data-priority='1'>NO</th>
@@ -130,7 +130,7 @@ $("#tbl_incoming_pms td").each(function () {
           $(this).css('background-color', 'red');  
 	}
          else if (passed === '') {
-          $(this).css('background-color', 'yellow'); 
+          $(this).css('background-color', 'red'); 
           $(this).css('color', 'black');  
 	}
 });
@@ -147,7 +147,7 @@ $("#tbl_incoming_ago td").each(function () {
           $(this).css('background-color', 'red');  
 	}
          else if (passed === '') {
-          $(this).css('background-color', 'yellow'); 
+          $(this).css('background-color', 'red'); 
           $(this).css('color', 'black');  
 	}
 });
