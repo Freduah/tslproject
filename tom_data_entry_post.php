@@ -16,9 +16,11 @@ if(isset($_POST['ctr'])){
     
     if ($db_con->query($query) === TRUE) 
         {
-          echo $data = 'New record successfully saved.';                               
+          $data = '1';
+          echo json_encode($data);                               
         } else {
-          echo $data = 'error';
+          $data = '-1';
+          echo json_encode($data);   
         }
        $db_con->close();
     
@@ -35,9 +37,11 @@ if(isset($_POST['ctr'])){
     
     if ($db_con->query($query) === TRUE) 
         {
-          echo $data = 'New record successfully saved.';                               
+          $data = '1';
+          echo json_encode($data);                               
         } else {
-          echo $data = 'error';
+          $data = '-1';
+          echo json_encode($data);   
         }
        $db_con->close();
     
@@ -54,9 +58,11 @@ if(isset($_POST['ctr'])){
     
     if ($db_con->query($query) === TRUE) 
         {
-          echo $data = 'New record successfully saved.';                               
+          $data = '1';
+          echo json_encode($data);                               
         } else {
-          echo $data = 'error';
+          $data = '-1';
+          echo json_encode($data);   
         }
        $db_con->close();
    
@@ -72,9 +78,11 @@ if(isset($_POST['ctr'])){
     
     if ($db_con->query($query) === TRUE) 
         {
-          echo $data = 'New record successfully saved.';                               
+          $data = '1';
+          echo json_encode($data);                               
         } else {
-          echo $data = 'error';
+          $data = '-1';
+          echo json_encode($data);   
         }
        $db_con->close();
   
@@ -91,19 +99,34 @@ if(isset($_POST['ctr'])){
     
     if ($db_con->query($query) === TRUE) 
         {
-          echo $data = 'New record successfully saved.';                               
+          $data = '1';
+          echo json_encode($data);                               
         } else {
-          echo $data = 'error';
+          $data = '-1';
+          echo json_encode($data);   
         }
        $db_con->close();
     
-}
-
-
-
-
+} else if(isset ($_POST['prod'])){
+    $prodcode = mysqli_real_escape_string($db_con, $_POST['prodcode']);
+    $prodname = mysqli_real_escape_string($db_con, $_POST['prodname']);
+    $proddesc = mysqli_real_escape_string($db_con, $_POST['proddesc']);
     
+    $user_name = $_SESSION['login_user_name'];
+    $query = "INSERT INTO `tsl_product`(`prodCode`, `prodName`, `Description`, `createdBy`) "
+            . "VALUES ('$prodcode','$prodname','$proddesc','$user_name')";
     
+    if ($db_con->query($query) === TRUE) 
+        {
+          $data = '1';
+          echo json_encode($data);                               
+        } else {
+          $data = '-1';
+          echo json_encode($data);   
+        }
+       $db_con->close();
+    
+}    
     
 }
 
