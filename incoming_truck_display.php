@@ -8,13 +8,13 @@
        
         <div id="tom_watch_stats" class="clearfix row">
             
-            <table style="width: 94%; font-size: large;">
+            <table style="width: 94%; font-size: larger ;">
                 <tr>
                     <td>
                         <div id="incoming-display-pms">                                                       
                             <?php 
                                 $entry_date = date('Y-m-d H:i:s');
-                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, t.BDC, TIME(t.CreatedDate) as ORDERTIME, "
+                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, t.BDC, TIME(t.ENTRYDATE) as ORDERTIME, "
                                          . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
                                          . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$entry_date') "
                                          . " AND t.PRODUCT = 'PMS' ORDER BY t.ENTRYDATE DESC LIMIT 10";
@@ -57,7 +57,7 @@
                       <div id="incoming-display-ago">                          
                             <?php 
                              $safety_date = date('Y-m-d H:i:s');
-                             $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.CAPACITY, t.BDC, TIME(t.CreatedDate) as ORDERTIME, "
+                             $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.CAPACITY, t.BDC, TIME(t.ENTRYDATE) as ORDERTIME, "
                                       . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
                                       . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$safety_date') "
                                       . " AND t.PRODUCT='AGO' ORDER BY t.ENTRYDATE DESC LIMIT 10";
@@ -128,7 +128,7 @@ $(document).ready(function(){
   
 $("#tbl_incoming_pms td").each(function () {
 
-	var passed = $(this).closest('tr').find('td:eq(4)').text();
+	var passed = $(this).closest('tr').find('td:eq(7)').text();
 	
 	
 	if (passed === 'Y') {
@@ -145,7 +145,7 @@ $("#tbl_incoming_pms td").each(function () {
 
 $("#tbl_incoming_ago td").each(function () {
 
-	var passed = $(this).closest('tr').find('td:eq(4)').text();
+	var passed = $(this).closest('tr').find('td:eq(7)').text();
 	
 	
 	if (passed === 'Y') {
