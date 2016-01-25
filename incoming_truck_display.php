@@ -14,7 +14,7 @@
                         <div id="incoming-display-pms">                                                       
                             <?php 
                                 $entry_date = date('Y-m-d H:i:s');
-                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, t.BDC, "
+                                $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id,t.TRUCKNO,t.CAPACITY, t.BDC, TIME(t.CreatedDate) as ORDERTIME, "
                                          . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
                                          . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$entry_date') "
                                          . " AND t.PRODUCT = 'PMS' ORDER BY t.ENTRYDATE DESC LIMIT 10";
@@ -40,6 +40,8 @@
                                   echo " <td>" . $row['TRUCKNO'] . "</td>";
                                   echo " <td>" . $row['CAPACITY'] . "</td>";
                                   echo " <td>" . $row['PRODUCT'] . "</td>";
+                                  echo " <td>" . $row['BDC'] . "</td>";
+                                  echo " <td>" . $row['ORDERTIME'] . "</td>";
                                   echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
                                   echo " </tr> "; 
                                  }
@@ -55,7 +57,7 @@
                       <div id="incoming-display-ago">                          
                             <?php 
                              $safety_date = date('Y-m-d H:i:s');
-                             $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.CAPACITY, "
+                             $query = "SELECT @i:=@i+1 AS ROWNUM, t.Id, t.SNO,t.TRUCKNO,t.CAPACITY, t.BDC, TIME(t.CreatedDate) as ORDERTIME, "
                                       . "t.PRODUCT, t.HASPASSEDSAFETY FROM tsl_truck_load AS t, "
                                       . "(SELECT @i:=0) AS foo WHERE DATE(t.ENTRYDATE)=DATE('$safety_date') "
                                       . " AND t.PRODUCT='AGO' ORDER BY t.ENTRYDATE DESC LIMIT 10";
@@ -81,6 +83,8 @@
                                   echo " <td>" . $row['TRUCKNO'] . "</td>";
                                   echo " <td>" . $row['CAPACITY'] . "</td>";
                                   echo " <td>" . $row['PRODUCT'] . "</td>";
+                                  echo " <td>" . $row['BDC'] . "</td>";
+                                  echo " <td>" . $row['ORDERTIME'] . "</td>";
                                   echo " <td>" . $row['HASPASSEDSAFETY'] . "</td>";
                                   echo " </tr> "; 
                                  }
