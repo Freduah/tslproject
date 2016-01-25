@@ -225,10 +225,14 @@ $("#contry_entry_dailog").dialog({
     
     buttons: { 
         "Create": function() {
+            var country='CTR';
+            var country_code = $("#country_code").val();
+            var country_name = $("#country_name").val();
+            var country_description = $("#country_desc").val();
             
-           $.post("",
+           $.post("tom_data_entry_post.php",
            {
-               
+              ctr:country, ctr_code:country_code, ctr_name:country_name, ctr_description:country_description 
            }, function(data){
              console.log(data);  
            });
