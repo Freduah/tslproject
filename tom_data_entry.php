@@ -234,8 +234,13 @@ $("#contry_entry_dailog").dialog({
            {
               ctr:country, ctr_code:country_code, ctr_name:country_name, ctr_description:country_description 
            }, function(data){
-             console.log(data); 
-              $(this).dialog("close");
+              result = $.parseJSON(data);
+              if(result === '1'){
+                  alert('Data successfully saved.');
+                  $(this).dialog("close");
+              } else if (result === '-1'){
+                  alert('Invalid data');
+              }
            });
             
         },
@@ -267,6 +272,13 @@ $("#bdc_entry_dailog").dialog({
             {
                bdc:bdc, dbccode:bdc_code, bdcname:bdc_name, bdcctr:bdc_ctr, bdcdesc:bdc_description 
             }, function(data){
+                result = $.parseJSON(data);
+                if(result === '1'){
+                    alert('Data successfully saved.');
+                    $(this).dialog("close");
+                } else if (result === '-1'){
+                    alert('Invalid data');
+                }
                 console.log(data);
             });
             
@@ -299,6 +311,13 @@ $("#depot_entry_dailog").dialog({
             {
               depot:depot, depotcode:depot_code, depotname:depot_name, depotctr:depot_ctr, depotdesc:depot_description  
             }, function(data){
+                result = $.parseJSON(data);
+                if(result === '1'){
+                    alert('Data successfully saved.');
+                    $(this).dialog("close");
+                } else if (result === '-1'){
+                    alert('Invalid data');
+                }
                console.log(data); 
             });
         },
@@ -319,7 +338,26 @@ $("#omc_entry_dailog").dialog({
     
     buttons: { 
         "Create": function() {
-            
+         
+         var omc = 'OMC';
+         var omc_code = $("#omc_code").val();
+         var omc_name = $("#omc_name").val();
+         var omc_ctr = $("#omc_ctr_code").val();
+         var omc_desc = $("#omc_desc").val();
+         $.post('tom_data_entry_post.php',
+         {
+           omc:omc,omccode:omc_code,omcname:omc_name,omcctr:omc_ctr,omcdesc:omc_desc    
+         }, function(data){
+             result = $.parseJSON(data);
+              if(result === '1'){
+                  alert('Data successfully saved.');
+                  $(this).dialog("close");
+              } else if (result === '-1'){
+                  alert('Invalid data');
+              }
+            console.log(data); 
+         });
+         
         },
         "Cancel": function(){
            $(this).dialog("close");
@@ -338,7 +376,27 @@ $("#transporter_entry_dailog").dialog({
     
     buttons: { 
         "Create": function() {
-            
+          
+          var trans = 'TRANSPORTER';
+          var trans_code = $("#transporter_code").val();
+          var trans_name = $("#transporter_name").val();
+          var trans_ctr = $("#transporter_ctr_code").val();
+          var trans_description = $("#transporter_desc").val();
+          
+          $.post('tom_data_entry_post.php',
+          {
+            trans:trans, transcode:trans_code, transname:trans_name, transctr:trans_ctr, transdesc:trans_description  
+          }, function(data){
+              result = $.parseJSON(data);
+              if(result === '1'){
+                  alert('Data successfully saved.');
+                  $(this).dialog("close");
+              } else if (result === '-1'){
+                  alert('Invalid data');
+              }
+             console.log(data); 
+          });
+          
         },
         "Cancel": function(){
            $(this).dialog("close");
@@ -357,7 +415,25 @@ $("#product_entry_dailog").dialog({
     
     buttons: { 
         "Create": function() {
-            
+          
+          var prod = 'PRODUCT';
+          var prod_code = $("#product_code").val();
+          var prod_name = $("#product_name").val();
+          var prod_description = $("#product_desc").val();
+          
+          $.post('tom_data_entry_post.php',
+          {
+            prod:prod, prodcode:prod_code, prodname:prod_name, proddesc:prod_description   
+          }, function(data){
+              result = $.parseJSON(data);
+              if(result === '1'){
+                  alert('Data successfully saved.');
+                  $(this).dialog("close");
+              } else if (result === '-1'){
+                  alert('Invalid data');
+              }
+             console.log(data); 
+          });          
         },
         "Cancel": function(){
            $(this).dialog("close");
@@ -365,8 +441,6 @@ $("#product_entry_dailog").dialog({
     }
     
 });  
-
-
 
 
 $("#country_entry_button").click(function(){
