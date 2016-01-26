@@ -53,7 +53,7 @@ if(isset($_POST['ctr'])){
     
     $user_name = $_SESSION['login_user_name'];
     $query = "INSERT INTO `tsl_depot`(`DepotCode`, `Country_Code`, `DepotName`, `Description`, `CreatedBy`) "
-            . "VALUES ('$depot_code','$depot_name','$depot_ctr','$depot_desc','$user_name')";
+            . "VALUES ('$depot_code','$depot_ctr','$depot_name','$depot_desc','$user_name')";
     
     
     if ($db_con->query($query) === TRUE) 
