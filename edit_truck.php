@@ -34,6 +34,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(!empty($_POST['etrucknumber']) && !empty($_POST['etrucktransporter']) && !empty($_POST['etruckdriver']) && !empty($_POST['etruckcapacity'])
          && !empty($_POST['etruckproduct']) && !empty($_POST['etruckbdc']) && !empty($_POST['modifieddate'])){
        
+        $e_entrytype = mysqli_real_escape_string($db_con, $_POST['entrytype']);
+        $ewaybillno = mysqli_real_escape_string($db_con, $_POST['waybillno']);
+        $collectionorder = mysqli_real_escape_string($db_con, $_POST['collectionoder']);
+        $ectrfrom = mysqli_real_escape_string($db_con, $_POST['countryfrom']);
+        $edepotfrom =  mysqli_real_escape_string($db_con, $_POST['depotfrom']);
+        $ectrto =  mysqli_real_escape_string($db_con, $_POST['countryto']); 
+        $edepotto = mysqli_real_escape_string($db_con, $_POST['depotto']);
+        $eomctype = mysqli_real_escape_string($db_con, $_POST['omctype']);
+        $eomcdest = mysqli_real_escape_string($db_con, $_POST['omcdest']);
+        
         $eserialnumber = mysqli_real_escape_string($db_con, $_POST['eserialnum']);
         $etrucknumber = mysqli_real_escape_string($db_con, $_POST['etrucknumber']);
         $etransporter = mysqli_real_escape_string($db_con, $_POST['etrucktransporter']);
