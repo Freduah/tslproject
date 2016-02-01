@@ -258,86 +258,88 @@
                                     <form id="edit_truck_entry_and_load_form">
                                             <fieldset>
                                                     <table id="tb-edit-data-entry-detail-one" style="width: 380px;">
-                                                            <tr>
-                                                                <td><label for="edit_serial_number">SNO</label></td>
-                                                                <td><input type="text" id="edit_serial_number" class="text ui-corner-all ui-widget-content" /></td>
-                                                                <td><label for="edit_entry_type">ENTRY TYPE</label></td> 
-                                                                <td><select id="edit_entry_type" class="text ui-widget-content ui-corner-all">
+                                                        <tr>
+                                                            <td><label for="edit_serial_number">SNO</label></td>
+                                                            <td><input type="text" id="edit_serial_number" class="text ui-corner-all ui-widget-content" /></td>
+                                                        </tr>
+                                                        <tr>                                                                
+                                                            <td><label for="edit_entry_type">ENTRY TYPE</label></td> 
+                                                            <td><select id="edit_entry_type" class="text ui-widget-content ui-corner-all">
+                                                                    <option value="">---</option>
+                                                                    <?php  
+                                                                        if($_SERVER['REQUEST_METHOD'] === 'GET'){
+
+                                                                            $query = "SELECT `EntryCode`,`EntryType`,`Description` FROM `tsl_entry_type`";
+                                                                            $result = $db_con->query($query);
+                                                                             while($row = $result->fetch_assoc()) {
+
+                                                                              echo "<option value='" . $row['EntryCode'] . "'> ". $row['EntryType'] . " " . $row['Description']  ." </option>";                            
+
+                                                                             }    
+
+                                                                        } 
+                                                                    ?>   
+                                                                </select></td>
+                                                        </tr> 
+                                                        <tr>
+                                                                <td><label for="edit_truck_waybill_number">WAYBILL NUMBER</label></td>
+                                                                <td><input type="text" id="edit_truck_waybill_number" class="text ui-widget-content ui-corner-all"></td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td><label for="edit_truck_collection_order_number">COLLECTION ORDER</label></td>
+                                                                <td><input type="text" id="edit_truck_collection_order_number" class="text ui-widget-content ui-corner-all"></td>
+                                                        </tr>
+                                                        <tr>    
+                                                        <td><label for="edit_truck_number">TRUCK NUMBER</label></td>
+                                                        <td><input type="text" id="edit_truck_number" value="" class="text ui-widget-content ui-corner-all"></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><label for="edit_truck_transporter">TRANSPORTER</label></td>
+                                                        <td><select id="edit_truck_transporter" class="text ui-widget-content ui-corner-all">
                                                                         <option value="">---</option>
                                                                         <?php  
-                                                                            if($_SERVER['REQUEST_METHOD'] === 'GET'){
+                                                                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                                                                                $query = "SELECT `EntryCode`,`EntryType`,`Description` FROM `tsl_entry_type`";
-                                                                                $result = $db_con->query($query);
-                                                                                 while($row = $result->fetch_assoc()) {
+                                                                                                $query = "SELECT `TRANPORTER_CODE`,`TRANSPORTER_NAME`,`Description` FROM `tsl_transporter`";
+                                                                                                $result = $db_con->query($query);
+                                                                                                 while($row = $result->fetch_assoc()) {
 
-                                                                                  echo "<option value='" . $row['EntryCode'] . "'> ". $row['EntryType'] . " " . $row['Description']  ." </option>";                            
+                                                                                                  echo "<option value='" . $row['TRANPORTER_CODE'] . "'> ". $row['TRANSPORTER_NAME'] . " " . $row['Description']  ." </option>";                            
 
-                                                                                 }    
+                                                                                                 }    
 
-                                                                            } 
+                                                                                } 
+
                                                                         ?>   
-                                                                    </select></td>
-                                                            </tr> 
-                                                            <tr>
-                                                                    <td><label for="edit_truck_waybill_number">WAYBILL NUMBER</label></td>
-                                                                    <td><input type="text" id="edit_truck_waybill_number" class="text ui-widget-content ui-corner-all"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                    <td><label for="edit_truck_collection_order_number">COLLECTION ORDER</label></td>
-                                                                    <td><input type="text" id="edit_truck_collection_order_number" class="text ui-widget-content ui-corner-all"></td>
-                                                            </tr>
-                                                            <tr>    
-                                                            <td><label for="edit_truck_number">TRUCK NUMBER</label></td>
-                                                            <td><input type="text" id="edit_truck_number" value="" class="text ui-widget-content ui-corner-all"></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><label for="edit_truck_transporter">TRANSPORTER</label></td>
-                                                            <td><select id="edit_truck_transporter" class="text ui-widget-content ui-corner-all">
-                                                                            <option value="">---</option>
-                                                                            <?php  
-                                                                                    if($_SERVER['REQUEST_METHOD'] === 'GET'){
+                                                                </select></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><label for="edit_truck_driver">DRIVER NAME</label></td>
+                                                        <td><input type="text" id="edit_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><label for="edit_truck_capacity">CAPACITY(QTY) Ltr</label></td>
+                                                        <td><input type="text" id="edit_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><label for="edit_truck_product">PRODUCT</label></td>
+                                                        <td><select id="edit_truck_product" class="text ui-widget-content ui-corner-all">
+                                                                        <option value=>---</option>
+                                                                        <?php  
+                                                                                if($_SERVER['REQUEST_METHOD'] === 'GET'){
 
-                                                                                                    $query = "SELECT `TRANPORTER_CODE`,`TRANSPORTER_NAME`,`Description` FROM `tsl_transporter`";
-                                                                                                    $result = $db_con->query($query);
-                                                                                                     while($row = $result->fetch_assoc()) {
+                                                                                        $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
+                                                                                        $result = $db_con->query($query);
+                                                                                         while($row = $result->fetch_assoc()) {
 
-                                                                                                      echo "<option value='" . $row['TRANPORTER_CODE'] . "'> ". $row['TRANSPORTER_NAME'] . " " . $row['Description']  ." </option>";                            
+                                                                                          echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
 
-                                                                                                     }    
+                                                                                         }    
 
-                                                                                    } 
+                                                                                } 
 
-                                                                            ?>   
-                                                                    </select></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><label for="edit_truck_driver">DRIVER NAME</label></td>
-                                                            <td><input type="text" id="edit_truck_driver" value="" class="text ui-widget-content ui-corner-all"></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><label for="edit_truck_capacity">CAPACITY(QTY) Ltr</label></td>
-                                                            <td><input type="text" id="edit_truck_capacity" value="" class="text ui-widget-content ui-corner-all"></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><label for="edit_truck_product">PRODUCT</label></td>
-                                                            <td><select id="edit_truck_product" class="text ui-widget-content ui-corner-all">
-                                                                            <option value=>---</option>
-                                                                            <?php  
-                                                                                    if($_SERVER['REQUEST_METHOD'] === 'GET'){
-
-                                                                                            $query = "SELECT `prodCode`, `prodName`, `Description` FROM `tsl_product`";
-                                                                                            $result = $db_con->query($query);
-                                                                                             while($row = $result->fetch_assoc()) {
-
-                                                                                              echo "<option value='" . $row['prodCode'] . "'> ". $row['prodName'] . " " . $row['Description']  ." </option>";                            
-
-                                                                                             }    
-
-                                                                                    } 
-
-                                                                            ?>   
-                                                                    </select> </td></tr>                                           
+                                                                        ?>   
+                                                                </select> </td></tr>                                           
 
                                                     </table>
                                             </fieldset>                          
@@ -1052,7 +1054,7 @@ $( "#edit_serial_number" ).on('input', function(){
             {
               serialno:serial_no  
             }, function(data){
-                console.log( $.parseJSON(data) );
+                console.log( $.parseJSON(data.SNO) );
                 $( "#edit_truck_entry_dialog" ).dialog( "open" );                 
                 $( "#edit_serial_number" ).val(data.SNO);
                 $( "#edit_entry_type" ).val(data.ENTRY_TYPE);
