@@ -56,9 +56,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $modifieddate = date('Y-m-d H:i:s');
         $modifiedby = mysqli_real_escape_string($db_con, $_SESSION['login_user_name']);
         
-        $sql = "UPDATE tsl_truck_load SET TRUCKNO='$etrucknumber', TRANSPORTER='$etransporter', DRIVERNAME='$etruckdriver',"
-                . " CAPACITY='$etruckcapacity', PRODUCT='$etruckproduct', BDC='$etruckbdc', GENBARCODE='$egenbarcode',"
-                . " GENBARCODEDATE='$genbarcodedate' ,MODIFIEDBY='$modifiedby', MODIFIEDDATE='$modifieddate'"
+        $sql = "UPDATE tsl_truck_load SET TRUCKNO='$etrucknumber', TRANSPORTER='$etransporter', DRIVERNAME='$etruckdriver', "
+                . " CAPACITY='$etruckcapacity', PRODUCT='$etruckproduct', BDC='$etruckbdc', GENBARCODE='$egenbarcode', "
+                . " GENBARCODEDATE='$genbarcodedate' ,MODIFIEDBY='$modifiedby', MODIFIEDDATE='$modifieddate', "
+                . " `ENTRY_TYPE`='$e_entrytype', `WAYBILL_NO`='$ewaybillno', `COLLECTION_ORDER_NO`='$collectionorder', "
+                . " `COUNTRY_LIFTED_FROM`='$ectrfrom',`COUNTRY_LIFTED_TO`='$ectrto', `DEPOT_LIFTED_FROM`='$edepotfrom', "
+                . " `DEPOT_LIFTED_TO`='$edepotto' ,`OMC_TYPE`='$eomctype' ,`OMC_DESTINATION`='$eomcdest' "
                 . " WHERE SNO='$eserialnumber'";
 
         if ($db_con->query($sql) === TRUE) {
