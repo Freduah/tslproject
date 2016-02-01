@@ -911,7 +911,7 @@ $(function(){
    $( "#edit_truck_entry_dialog" ).dialog({
        
        autoOpen: false,
-       height: 500,
+       height: 530,
        width: 800,
        modal: true,
        dialogClass: 'uititle',
@@ -1054,7 +1054,7 @@ $( "#edit_serial_number" ).on('input', function(){
             {
               serialno:serial_no  
             }, function(data){
-                console.log( $.parseJSON(data.SNO) );
+                console.log( $.parseJSON(data) );
                 $( "#edit_truck_entry_dialog" ).dialog( "open" );                 
                 $( "#edit_serial_number" ).val(data.SNO);
                 $( "#edit_entry_type" ).val(data.ENTRY_TYPE);
