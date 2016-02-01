@@ -1054,24 +1054,24 @@ $( "#edit_serial_number" ).on('input', function(){
             {
               serialno:serial_no  
             }, function(data){
-                console.log( $.parseJSON(data) );
+                var rs = $.parseJSON(data);
                 $( "#edit_truck_entry_dialog" ).dialog( "open" );                 
-                $( "#edit_serial_number" ).val(data.SNO);
-                $( "#edit_entry_type" ).val(data.ENTRY_TYPE);
-                $( "#edit_truck_waybill_number" ).val(data.WAYBILL_NO);
-                $( "#edit_truck_collection_order_number" ).val(data.COLLECTION_ORDER_NO);
-                $( "#edit_truck_number" ).val(data.TRUCKNO);
-                $( "#edit_truck_transporter" ).val(data.TRANSPORTER);
-                $( "#edit_truck_driver" ).val(data.DRIVERNAME);
-                $( "#edit_truck_capacity" ).val(data.CAPACITY);
-                $( "#edit_truck_product" ).val(data.PRODUCT);
-                $( "#edit_truck_bdc" ).val(data.BDC);
-                $( "#edit_country_lifted_from" ).val(data.COUNTRY_LIFTED_FROM);
-                $( "#edit_depot_lifted_from" ).val(data.DEPOT_LIFTED_FROM);
-                $( "#edit_country_lifted_to" ).val(data.COUNTRY_LIFTED_TO);
-                $( "#edit_depot_lifted_to" ).val(data.DEPOT_LIFTED_TO);              
-                $( "#edit_omc_type" ).val(data.OMC_TYPE);
-                $( "#edit_omc_destination" ).val(data.OMC_DESTINATION);
+                $( "#edit_serial_number" ).val(rs.SNO);
+                $( "#edit_entry_type" ).val(rs.ENTRY_TYPE);
+                $( "#edit_truck_waybill_number" ).val(rs.WAYBILL_NO);
+                $( "#edit_truck_collection_order_number" ).val(rs.COLLECTION_ORDER_NO);
+                $( "#edit_truck_number" ).val(rs.TRUCKNO);
+                $( "#edit_truck_transporter" ).val(rs.TRANSPORTER);
+                $( "#edit_truck_driver" ).val(rs.DRIVERNAME);
+                $( "#edit_truck_capacity" ).val(rs.CAPACITY);
+                $( "#edit_truck_product" ).val(rs.PRODUCT);
+                $( "#edit_truck_bdc" ).val(rs.BDC);
+                $( "#edit_country_lifted_from" ).val(rs.COUNTRY_LIFTED_FROM);
+                $( "#edit_depot_lifted_from" ).val(rs.DEPOT_LIFTED_FROM);
+                $( "#edit_country_lifted_to" ).val(rs.COUNTRY_LIFTED_TO);
+                $( "#edit_depot_lifted_to" ).val(rs.DEPOT_LIFTED_TO);              
+                $( "#edit_omc_type" ).val(rs.OMC_TYPE);
+                $( "#edit_omc_destination" ).val(rs.OMC_DESTINATION);
             });
             
               
