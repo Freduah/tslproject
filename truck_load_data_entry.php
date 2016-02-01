@@ -919,6 +919,16 @@ $(function(){
        buttons : {
           "Update": function(){
             
+            var entry_type = $( "#edit_entry_type" ).val();
+            var waybill_no = $( "#edit_truck_waybill_number" ).val();
+            var collection_no = $( "#edit_truck_collection_order_number" ).val();
+            var ctrlift_from = $( "#edit_country_lifted_from" ).val();
+            var depotlift_from = $( "#edit_depot_lifted_from" ).val();
+            var ctrylift_to = $( "#edit_country_lifted_to" ).val();
+            var depotlift_to = $( "#edit_depot_lifted_to" ).val();              
+            var omc_type = $( "#edit_omc_type" ).val();
+            var omc_destination = $( "#edit_omc_destination" ).val();
+            
             var eserialnumber = $( "#edit_serial_number" ).val();
             var etruck_number = $( "#edit_truck_number").val();
             var etruck_transporter = $( "#edit_truck_transporter").val();
