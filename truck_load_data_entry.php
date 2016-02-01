@@ -259,6 +259,8 @@
                                             <fieldset>
                                                     <table id="tb-edit-data-entry-detail-one" style="width: 380px;">
                                                             <tr>
+                                                                <td><label for="edit_serial_number">SNO</label></td>
+                                                                <td><input type="text" id="edit_serial_number" class="text ui-corner-all ui-widget-content" /></td>
                                                                 <td><label for="edit_entry_type">ENTRY TYPE</label></td> 
                                                                 <td><select id="edit_entry_type" class="text ui-widget-content ui-corner-all">
                                                                         <option value="">---</option>
@@ -1035,12 +1037,6 @@ $( "#edit_serial_number" ).on('input', function(){
         var col_num = parseInt( $(this).index() ) + 1;
         var row_num = parseInt( $(this).parent().index() )+1;   
         var serial_no = $(this).closest('tr').find('td:eq(1)').text();
-        var truck_no =  $(this).closest('tr').find('td:eq(2)').text();
-        var transporter =  $(this).closest('tr').find('td:eq(3)').text();
-        var driver_name =  $(this).closest('tr').find('td:eq(4)').text();
-        var capacity =  $(this).closest('tr').find('td:eq(5)').text();
-        var product =  $(this).closest('tr').find('td:eq(6)').text();
-        var bdc =  $(this).closest('tr').find('td:eq(7)').text();
         var barcode_text =  $(this).closest('tr').find('td:eq(8)').text(); 
         if(col_num === 11 && row_num !== null){
 
@@ -1052,14 +1048,31 @@ $( "#edit_serial_number" ).on('input', function(){
           $( "#barcode_dialog" ).dialog( "open" );     
         } else if(col_num === 12 && row_num !== null){
             
-            $( "#edit_truck_entry_dialog" ).dialog( "open" ); 
-            $( "#edit_serial_number" ).val(serial_no);
-            $( "#edit_truck_number").val(truck_no);
-            $( "#edit_truck_transporter").val(transporter);
-            $( "#edit_truck_driver").val(driver_name);
-            $( "#edit_truck_capacity").val(capacity);
-            $( "#edit_truck_product").val(product);
-            $( "#edit_truck_bdc").val(bdc);
+            $.post('edit_truck_data_entry.php',
+            {
+              serialno:serial_no  
+            }, function(data){
+                console.log( $.parseJSON(data) );
+                $( "#edit_truck_entry_dialog" ).dialog( "open" );                 
+                $( "#edit_serial_number" ).val(data.SNO);
+                $( "#edit_entry_type" ).val(data.ENTRY_TYPE);
+                $( "#edit_truck_waybill_number" ).val(data.WAYBILL_NO);
+                $( "#edit_truck_collection_order_number" ).val(data.COLLECTION_ORDER_NO);
+                $( "#edit_truck_number" ).val(data.TRUCKNO);
+                $( "#edit_truck_transporter" ).val(data.TRANSPORTER);
+                $( "#edit_truck_driver" ).val(data.DRIVERNAME);
+                $( "#edit_truck_capacity" ).val(data.CAPACITY);
+                $( "#edit_truck_product" ).val(data.PRODUCT);
+                $( "#edit_truck_bdc" ).val(data.BDC);
+                $( "#edit_country_lifted_from" ).val(data.COUNTRY_LIFTED_FROM);
+                $( "#edit_depot_lifted_from" ).val(data.DEPOT_LIFTED_FROM);
+                $( "#edit_country_lifted_to" ).val(data.COUNTRY_LIFTED_TO);
+                $( "#edit_depot_lifted_to" ).val(data.DEPOT_LIFTED_TO);              
+                $( "#edit_omc_type" ).val(data.OMC_TYPE);
+                $( "#edit_omc_destination" ).val(data.OMC_DESTINATION);
+            });
+            
+              
         }
  });
 
